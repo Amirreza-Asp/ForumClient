@@ -1,0 +1,107 @@
+.line-button {
+  padding: 0.8rem 1.8rem;
+  position: relative;
+  font-size: 1rem;
+  background-color: transparent;
+  color: cyan;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.4s;
+
+  .load-rotate {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    animation: load 1.5s infinite;
+  }
+
+  @keyframes load {
+    from {
+      transform: rotate(1turn);
+    }
+  }
+
+  i {
+    margin-left: 5px;
+  }
+
+  span {
+    position: absolute;
+
+    $anime-time: 2s;
+
+    &.line-1 {
+      left: 0;
+      top: 100%;
+      background: linear-gradient(cyan, transparent);
+      width: 2.5px;
+      height: 100%;
+      animation: move-line-1 $anime-time infinite linear;
+    }
+
+    &.line-2 {
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(270deg, cyan, transparent);
+      animation: move-line-2 $anime-time #{$anime-time/2} infinite linear;
+    }
+
+    &.line-3 {
+      right: 0;
+      top: 0;
+      width: 2.5px;
+      height: 100%;
+      background: linear-gradient(-0deg, cyan, transparent);
+      animation: move-line-3 $anime-time infinite linear;
+    }
+
+    &.line-4 {
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      animation: move-line-4 $anime-time #{$anime-time/2} infinite linear;
+    }
+  }
+}
+
+@keyframes move-line-1 {
+  from {
+    top: 100%;
+  }
+  to {
+    top: -100%;
+  }
+}
+
+@keyframes move-line-2 {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes move-line-3 {
+  from {
+    top: -100%;
+  }
+  to {
+    top: 100%;
+  }
+}
+
+@keyframes move-line-4 {
+  from {
+    right: -100%;
+  }
+  to {
+    right: 100%;
+  }
+}

@@ -1,0 +1,84 @@
+.upsert-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-primary);
+}
+.upsert-user-container {
+  border: 4px var(--color-tertiary);
+  border-style: groove;
+  overflow: hidden;
+  width: calc(17vw + 20rem);
+
+  outline: 14px solid #282828;
+  background-color: #282828;
+}
+
+@media screen and (max-width: 600px) {
+  .upsert-user-container {
+    width: calc(17vw + 17rem);
+  }
+}
+.upsert-user-container-inner {
+  height: 100%;
+  width: 100%;
+  padding: 2rem 3rem 3rem;
+}
+@media screen and (max-width: 600px) {
+  .upsert-user-container-inner {
+    padding-inline: 2rem;
+  }
+}
+
+.btn-conatiner {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 2rem;
+}
+
+.upsert-user-container-inner .title {
+  margin-bottom: 2.4rem;
+}
+.upsert-user-container-inner .step-1,
+.upsert-user-container-inner .step-2,
+.upsert-user-container-inner .step-3,
+.upsert-user-container-inner .step-4,
+.upsert-user-container-inner .step-5 {
+  opacity: 0;
+  display: none;
+  transition: 0.3s;
+}
+.upsert-user-container-inner .step-1.active,
+.upsert-user-container-inner .step-2.active,
+.upsert-user-container-inner .step-3.active,
+.upsert-user-container-inner .step-4.active,
+.upsert-user-container-inner .step-5.active {
+  opacity: 1;
+  display: block;
+}
+.upsert-user-container-inner .upsert-user-steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+.upsert-user-container-inner .upsert-user-steps .list {
+  list-style-type: none;
+  display: flex;
+  gap: calc(5px + 1vw);
+}
+.upsert-user-container-inner .upsert-user-steps .list .item {
+  width: calc(3rem + 1vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--color-tertiary);
+  cursor: pointer;
+}
+.upsert-user-container-inner .upsert-user-steps .list .item.active {
+  background: radial-gradient(var(--color-tertiary), black);
+  color: black;
+}

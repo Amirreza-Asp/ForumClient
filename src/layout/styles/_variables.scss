@@ -1,0 +1,83 @@
+//*-*-*-*-*-*-*-*-*-*-- The 1300px Mark Break Point*-*-*-*-*-*-*-*-*-*-*
+@mixin media-desktop {
+  @media screen and (max-width: break-point(break-point-desktop)) {
+    @content;
+  }
+}
+
+//*-*-*-*-*-*-*-*-*-*-- The 1100px Mark Break Point*-*-*-*-*-*-*-*-*-*-*
+@mixin media-tiny-desk {
+  @media screen and (max-width: break-point(break-point-tiny-desk)) {
+    @content;
+  }
+}
+
+//*-*-*-*-*-*-*-*-*-*-- The 800px Mark Break Point*-*-*-*-*-*-*-*-*-*-*
+@mixin media-tablet {
+  @media screen and (max-width: break-point(break-point-tablet)) {
+    @content;
+  }
+}
+
+//*-*-*-*-*-*-*-*-*-*-- The 600px Mark Break Point*-*-*-*-*-*-*-*-*-*-*
+@mixin media-medium {
+  @media screen and (max-width: break-point(break-point-medium)) {
+    @content;
+  }
+}
+
+//*-*-*-*-*-*-*-*-*-*-- The 400px Mark Break Point*-*-*-*-*-*-*-*-*-*-*
+@mixin media-small {
+  @media screen and (max-width: break-point(break-point-small)) {
+    @content;
+  }
+}
+
+// ---*-*-*-*-*-*-*-*--*-*-*- Font Weights --*-*-*-*-*-*-*-*-*-*-*--
+$font-weights: (
+  "font-weight-thin": 100,
+  "font-weight-light": 300,
+  "font-weight-regular": 400,
+  "font-weight-medium": 500,
+  "font-weight-bold": 700,
+  "font-weight-bolder": 900,
+);
+
+@function font-weight($font-weight-name) {
+  @return map-get($font-weights, $font-weight-name);
+}
+
+// ---*-*-*-*-*-*-*-*--*-*-*- Font Sizes --*-*-*-*-*-*-*-*-*-*-*--
+$font-sizes: (
+  "small": calc(0.75rem + 0.4vw),
+  "regular": calc(0.75rem + 0.6vw),
+  "medium": calc(1rem + 1vw),
+  "large": calc(0.75rem + 1.5vw),
+  "xlarge": calc(1.25rem + 5vw),
+);
+
+@function font-size($font-size-name) {
+  @return map-get($font-sizes, $font-size-name);
+}
+
+//*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* Break Points *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+$break-points: (
+  "break-point-small": 500px,
+  "break-point-medium": 600px,
+  "break-point-tablet": 800px,
+  "break-point-tiny-desk": 1100px,
+  "break-point-desktop": 1300px,
+);
+
+@function break-point($break-point-limit) {
+  @return map-get($break-points, $break-point-limit);
+}
+
+//
+.flex-center {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

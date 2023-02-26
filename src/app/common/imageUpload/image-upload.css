@@ -1,0 +1,20 @@
+.image-upload {
+  display: flex;
+  justify-content: space-between;
+  gap: 3%;
+  align-items: center;
+  color: white;
+}
+
+.add-photo,
+.resize-img,
+.submit-photo {
+  width: 30%;
+}
+
+.photo-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}

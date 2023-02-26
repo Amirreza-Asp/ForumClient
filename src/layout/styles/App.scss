@@ -1,0 +1,39 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: rgb(25, 25, 30);
+  font-family: Helvetica, sans-serif;
+  overflow-x: hidden;
+  width: 100vw;
+}
+
+// Light Color Palette (Custom Properties)
+html {
+  --color-primary: #ccc;
+  --color-secondary: #1c90ce;
+  --color-tertiary: rgb(24, 178, 255);
+  --color-quaternary: #00334e;
+  --color-logo: #148cef;
+
+  --color-item: rgb(36, 36, 36);
+  --color-quinary: #0e0e0e;
+  --color-bg: rgb(25, 25, 30);
+}
+
+.root {
+  background-color: black;
+}
+
+@import "./variables";
+
+@import "./neon-button";
+@import "./text-input";
+@import "./select_options";
+@import "./line-button";
+@import "./border-button";

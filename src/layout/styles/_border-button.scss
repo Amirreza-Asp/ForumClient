@@ -1,0 +1,9 @@
+.border-button {
+  background-color: transparent;
+  border-radius: 3px;
+  cursor: pointer;
+
+  padding: calc(0.3rem + 0.2vw) calc(0.95rem + 0.4vw);
+  font-size: calc(0.6rem + 0.25vw);
+  transition: 0.4s;
+}

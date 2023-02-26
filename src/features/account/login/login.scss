@@ -1,0 +1,81 @@
+@import "./../../../layout/styles/variables";
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-primary);
+
+  $bg: rgb(40, 40, 40);
+
+  &-container {
+    border: 4px var(--color-tertiary);
+    border-style: groove;
+    overflow: hidden;
+    width: calc(17vw + 19rem);
+    outline: 14px solid $bg;
+    background-color: $bg;
+
+    @include media-medium {
+      margin-inline: 1rem;
+      width: calc(17vw + 16rem);
+    }
+
+    &-inner {
+      height: 100%;
+      width: 100%;
+      padding: 3rem 4rem 5rem;
+
+      @include media-medium {
+        padding-inline: 1rem;
+      }
+
+      .title {
+        font-size: 1.2rem;
+        width: max-content;
+        position: relative;
+        margin-bottom: 1rem;
+
+        // &::before {
+        //   content: "";
+        //   position: absolute;
+        //   top: 0;
+        //   right: 0;
+        //   width: 2px;
+        //   height: 100%;
+        //   background-color: var(--color-tertiary);
+        // }
+
+        // &::after {
+        //   content: "";
+        //   position: absolute;
+        //   height: 2px;
+        //   width: 45%;
+        //   bottom: 0;
+        //   left: 0;
+        //   background-color: var(--color-logo);
+        // }
+
+        @include media-tablet {
+          font-size: 1rem;
+        }
+
+        h2 {
+          position: relative;
+          letter-spacing: 1.5px;
+          overflow: hidden;
+          height: 39.2px;
+          color: var(--color-primary);
+          animation: typing 8s steps(8) infinite;
+        }
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}

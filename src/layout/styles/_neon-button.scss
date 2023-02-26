@@ -1,0 +1,69 @@
+.neon-btn-container {
+  button {
+    padding: 0.8em 3em;
+    cursor: pointer;
+    border: 1px solid var(--color-tertiary);
+    background: transparent;
+    color: var(--color-tertiary);
+    border-radius: 5px;
+    font-size: 0.9rem;
+    box-shadow: inset 0 0 20px var(--color-logo), 0 0 10px 1px var(--color-logo);
+    position: relative;
+    perspective: preserve-3d;
+    transition: 0.5s;
+    margin-top: 3rem;
+
+    &.shadow {
+      box-shadow: inset 0 0 20px var(--color-logo),
+        0 0 20px 1px var(--color-logo);
+    }
+
+    &.shadow::after {
+      content: "";
+      position: absolute;
+      top: 110%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-logo);
+      filter: blur(40px);
+      transform: perspective(140px) rotateX(82deg);
+      pointer-events: none;
+      transition: 0.5s;
+    }
+
+    &:hover {
+      box-shadow: inset 0 0 30px var(--color-logo),
+        0 0 20px 8px var(--color-logo);
+      text-shadow: -1px 1px 2px var(--color-logo);
+
+      &.shadow:after {
+        filter: blur(35px);
+        transform: perspective(110px) rotateX(82deg);
+      }
+    }
+
+    .neon-btn-loader-container {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+
+      .neon-btn-loader {
+        display: inline-block;
+        width: 1.2rem;
+        aspect-ratio: 1;
+        border: 2px solid var(--color-tertiary);
+        border-top-color: rgba(179, 216, 255, 0.3);
+        border-radius: 50%;
+        animation: load 1.3s ease-in-out infinite;
+      }
+    }
+  }
+}
+
+@keyframes load {
+  from {
+    transform: rotate(1turn);
+  }
+}

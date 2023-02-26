@@ -1,0 +1,269 @@
+@import "../styles/variables";
+
+.sidebar {
+  background: rgba(32, 32, 32, 0.7);
+  z-index: 100;
+  color: var(--color-quinary);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(6px);
+  // border: 1px solid rgba(255, 255, 255, 0.18);
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 15em;
+  height: calc(100vh - 80px);
+  overflow-y: hidden;
+  z-index: 10;
+  transition: 0.3s;
+
+  @include media-tablet {
+    height: calc(100vh - 146px);
+    top: 143px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #2a2f44;
+    border-radius: 10px;
+  }
+
+  & > div {
+    height: 100%;
+    overflow-y: scroll;
+    padding: 1.7em 1em 1.7em 1em;
+
+    scrollbar-width: thin;
+    scrollbar-color: #2a2f44 transparent;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  small {
+    color: #ccc;
+  }
+
+  .brand {
+    display: block;
+    font-size: 1.5em;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .menu-heading {
+    padding: 1em;
+    margin: 2em 0 0.5em 0;
+    display: block;
+  }
+
+  ul {
+    padding-bottom: 1.5em;
+
+    i {
+      font-size: 1.6em;
+      margin-right: 0.5em;
+    }
+  }
+
+  hr {
+    border: 1px #2a2f44 solid;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  li {
+    position: relative;
+    perspective: preserve-3d;
+    transition: 0.3s;
+
+    &::after,
+    &::before {
+      content: "";
+      height: 100%;
+      position: absolute;
+      z-index: -1;
+
+      transition: 0.3s;
+    }
+
+    &:hover::after,
+    &.active::after {
+      left: -6px;
+      top: 0;
+      width: 6px;
+      background-color: var(--color-logo);
+      z-index: -1;
+      border-radius: 30px;
+    }
+
+    &:hover::after {
+      background-color: var(--color-tertiary);
+    }
+
+    &.active::before,
+    &:hover::before {
+      content: "";
+      position: absolute;
+      left: 0px;
+      top: 5%;
+      height: 90%;
+      width: 100%;
+      z-index: -1;
+      background: linear-gradient(90deg, var(--color-logo), transparent);
+      filter: blur(2px);
+    }
+
+    &:hover::before {
+      background: linear-gradient(90deg, var(--color-tertiary), transparent);
+    }
+
+    a {
+      color: #ccc;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      padding: 1em;
+      border-radius: 0.8em;
+      transition: 0.3s;
+
+      div {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+      }
+    }
+  }
+
+  .notification {
+    li {
+      a {
+        width: 100%;
+        justify-content: space-between;
+
+        div {
+          display: flex;
+          justify-content: start;
+          align-items: center;
+        }
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .badge {
+    background-color: var(--color-logo);
+    border-radius: 50%;
+    width: 1.8em;
+    aspect-ratio: 1;
+    text-align: center;
+    line-height: 20px;
+    color: #fff;
+    font-size: 0.7em;
+    transition: 0.3;
+  }
+
+  li:hover,
+  li:active {
+    .badge {
+      background: var(--color-tertiary) !important;
+    }
+  }
+
+  li.active .badge {
+    background-color: var(--color-tertiary);
+  }
+
+  .profile {
+    padding: 1.7em 1em 1.7em 1em;
+    display: flex;
+    align-items: center;
+    a {
+      img {
+        width: 2.5em;
+        height: 2.5em;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+        display: inline-block;
+        text-align: center;
+        margin-right: 15px;
+      }
+    }
+
+    h4 {
+      margin: 0 0 0.5em 0;
+
+      color: var(--color-primary);
+    }
+  }
+}
+
+.sidebar.close,
+.sidebar.media-close {
+  width: 4.5em;
+  font-size: 14px;
+  text-align: center;
+
+  @include media-medium {
+    width: 0;
+  }
+
+  div {
+    padding: 1.7em 0.2em 1.7em 0.3em;
+  }
+
+  .notification {
+    li {
+      a {
+        padding: 0.2em 1em;
+        justify-content: center;
+
+        div {
+          i {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  span,
+  .profile div,
+  .profile span {
+    display: none;
+  }
+
+  .menu-heading,
+  .profile {
+    margin-top: 0;
+  }
+
+  .menu-heading {
+    display: none;
+  }
+
+  .profile {
+    justify-content: center;
+
+    a {
+      img {
+        margin-right: 0 !important;
+      }
+    }
+  }
+}
