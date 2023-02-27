@@ -32,6 +32,7 @@ axios.interceptors.request.use((config) => {
     ...config.headers,
     "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
+    crossDomain: true,
   };
   if (token) {
     config.headers = {
