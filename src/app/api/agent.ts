@@ -31,9 +31,6 @@ axios.interceptors.request.use((config) => {
   config.headers = {
     ...config.headers,
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers":
-      "Host, Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-XSRF-TOKEN, Origin, Access-Control-Request-Origin, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Origin, access-control-allow-origin, Access-Control-Allow-Credentials, access-control-allow-credentials, Access-Control-Allow-Headers, access-control-allow-headers, Access-Control-Allow-Methods, access-control-allow-methods",
-    "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT,PATCH",
   };
   if (token) {
     config.headers = {
