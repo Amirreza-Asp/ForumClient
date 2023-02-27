@@ -28,10 +28,6 @@ const sleep = (delay: number) => {
 
 axios.interceptors.request.use((config) => {
   const token = store.commonStore.token;
-  config.headers = {
-    ...config.headers,
-    "Access-Control-Allow-Origin": "*",
-  };
   if (token) {
     config.headers = {
       ...config.headers,
