@@ -8,17 +8,17 @@
   backdrop-filter: blur(6px);
   // border: 1px solid rgba(255, 255, 255, 0.18);
   position: fixed;
-  top: 80px;
+  top: 84px;
   left: 0;
   width: 15em;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 84px);
   overflow-y: hidden;
   z-index: 10;
   transition: 0.3s;
 
   @include media-tablet {
     height: calc(100vh - 146px);
-    top: 143px;
+    top: 146px;
   }
 
   ::-webkit-scrollbar {

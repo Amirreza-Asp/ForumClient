@@ -12,6 +12,7 @@
     top: 0;
     left: 0;
     width: 100%;
+    height: 85px;
     display: flex;
     padding: 1rem 2rem;
     justify-content: space-between;
@@ -281,6 +282,7 @@
       display: grid;
       grid-template-columns: 2;
       grid-template-rows: 2;
+      height: 146px;
 
       &-logo {
         grid-row: 1/2;
