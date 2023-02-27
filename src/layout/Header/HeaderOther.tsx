@@ -10,21 +10,21 @@ export default observer(function HeaderOther() {
   const { user } = accountStore;
 
   return (
-    <div className="header-nav-other">
+    <div className="layout-header-nav-other">
       {accountStore.IsLoggedIn ? (
         <>
-          <div className="header-nav-other-bell">
+          <div className="layout-header-nav-other-bell">
             <i className="fa fa-bell"></i>
             <span className="notif">4</span>
           </div>
-          <div className="header-nav-other-message">
+          <div className="layout-header-nav-other-message">
             <i className="fa fa-comment-alt-dots"></i>
             <span className="notif">3</span>
           </div>
 
-          <div className="header-nav-other-user">
+          <div className="layout-header-nav-other-user">
             <img
-              className="header-nav-other-user-img"
+              className="layout-header-nav-other-user-img"
               src={userImage(user?.image, 150, 150)}
               alt="user"
               onClick={() => accountStore.setPopUp(!accountStore.popUp)}

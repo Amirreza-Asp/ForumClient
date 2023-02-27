@@ -39,7 +39,7 @@ export default function Dashboard() {
           <DashboardCard key={index} icon={item} data={data} />
         ))}
       </div>
-      <div style={{ display: "flex", gap: "1rem" }}>
+      <div className="charts-container">
         <DashboardAvgUserOnline />
         <NewMemberChart />
         <BestCommunityActivityTime />

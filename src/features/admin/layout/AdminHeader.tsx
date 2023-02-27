@@ -22,7 +22,7 @@ export default observer(function AdminHeader({
   } = useStore();
 
   return (
-    <header>
+    <header className="header-admin">
       <div className={`header-nav-logo`}>
         <div
           className={`header-nav-logo-hamburger ${active ? "active" : ""}`}

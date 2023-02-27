@@ -83,3 +83,17 @@
     }
   }
 }
+
+.charts-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  div {
+    width: 32%;
+
+    @include media-tiny-desk {
+      width: 100%;
+    }
+  }
+}

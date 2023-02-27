@@ -12,8 +12,8 @@ export default observer(function Header() {
   } = useStore();
 
   return (
-    <header className="header">
-      <nav className="header-nav">
+    <header className="layout-header">
+      <nav className="layout-header-nav">
         <HeaderLogo close={close} toggleClose={toggleClose} />
         <HeaderSearch />
         <HeaderOther />

@@ -1,6 +1,6 @@
 @import "../styles/variables";
 
-.header {
+.layout-header {
   height: 85px;
   position: relative;
 
@@ -275,7 +275,7 @@
 }
 
 @media screen and (max-width: 800px) {
-  .header {
+  .layout-header {
     height: 146px;
     &-nav {
       display: grid;
