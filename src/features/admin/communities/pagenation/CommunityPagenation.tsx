@@ -45,7 +45,7 @@ export default observer(function CommunityPagenation() {
     setQuery(newQuery);
   }
 
-  function handleFilterClick(filters: ICommunityFilter) {
+  function handleFilterClick(filters: {}) {
     let filtered: FilterModel[] = [];
     const keys = Object.keys(filters);
     const values = Object.values(filters);
