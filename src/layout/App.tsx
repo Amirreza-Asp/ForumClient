@@ -13,7 +13,9 @@ import Dashboard from "../features/admin/home/dashboard/Dashboard";
 import UserPagenation from "../features/admin/users/pagenation/UserPagenation";
 import Layout from "./Layout";
 import { store, StoreContext, useStore } from "../app/stores/store";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import ProfilePage from "../features/account/profile/ProfilePage";
+import CommunityPagenation from "../features/admin/communities/pagenation/CommunityPagenation";
 
 function App() {
   const { accountStore, commonStore } = useStore();
@@ -51,6 +53,11 @@ function App() {
                 exact
                 component={UserPagenation}
               />
+              <Route
+                path={routes.Admin_Communities}
+                exact
+                component={CommunityPagenation}
+              />
             </Switch>
           </AdminLayout>
         </Route>
@@ -64,6 +71,7 @@ function App() {
                 exact
                 component={ServerErrorPage}
               />
+              <Route path="/profile" exact component={ProfilePage} />
             </Switch>
           </Layout>
         </Route>

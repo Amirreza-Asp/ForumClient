@@ -13,8 +13,9 @@
     border-style: groove;
     overflow: hidden;
     width: calc(17vw + 20rem);
-    outline: 14px solid $bg;
-    background-color: $bg;
+    outline: 14px solid var(--color-glass);
+    background-color: var(--color-glass);
+    box-shadow: var(--shadow-glass);
 
     @include media-medium {
       width: calc(17vw + 17rem);

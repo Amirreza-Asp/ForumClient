@@ -10,12 +10,13 @@ import {
   UserResult,
   UserSummary,
 } from "../models/User";
-import { Profile } from "../models/Profile";
+import { Photo, Profile } from "../models/Profile";
 import { store } from "../stores/store";
 import { routes } from "../utility/SD";
 import { GridQuery } from "../models/Queries";
 import { Pagenation } from "../models/Shared";
 import { Role } from "../models/Role";
+import { Community, UpsertCommunity } from "../models/Community";
 
 axios.defaults.baseURL = process.env.REACT_APP_SERVER;
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
@@ -57,7 +58,7 @@ axios.interceptors.response.use(
           toast.error(data);
         }
         if (data.errors) {
-          const modelStateErrors = [];
+          const modelStateErrors: any[] = [];
           for (const key in data.errors) {
             if (data.errors[key]) {
               modelStateErrors.push(data.errors[key]);
@@ -91,6 +92,15 @@ const requests = {
   delete: <T>(url: string) => axios.delete<T>(url).then(responseBody),
 };
 
+const communities = {
+  pagenation: (query: GridQuery) =>
+    requests.post<Pagenation<Community>>("community/pagenation", query),
+  find: (id: string) => requests.get<Community>(`community/find/${id}`),
+  add: (model: UpsertCommunity) => requests.post("community/create", model),
+  update: (model: UpsertCommunity) => requests.put("community/update", model),
+  remove: (id: string) => requests.delete(`community/remove/${id}`),
+};
+
 const Account = {
   current: () => requests.get<User>("account/current"),
   login: (model: Login) =>
@@ -112,6 +122,8 @@ const role = {
 const profile = {
   get: (userName: string) =>
     requests.get<Profile>(`profile/details?userName=${userName}`),
+  photos: (userName: String) =>
+    requests.get<Photo[]>(`profile/allImages?userName=${userName}`),
 };
 
 const user = {
@@ -130,6 +142,7 @@ const agent = {
   profile,
   user,
   role,
+  communities,
 };
 
 export default agent;

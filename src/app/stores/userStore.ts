@@ -95,7 +95,7 @@ export default class UserStore {
     }
   };
 
-  private setLoadingUsers(loading: boolean) {
+  setLoadingUsers = (loading: boolean) => {
     this.loadingUsers = loading;
-  }
+  };
 }

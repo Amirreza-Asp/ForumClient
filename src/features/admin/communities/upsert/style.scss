@@ -1,0 +1,17 @@
+.add-container {
+  width: min(400px, 100vw);
+  color: var(--color-primary);
+  padding-block: 2rem;
+
+  .header {
+    padding-bottom: 1.5rem;
+    text-align: center;
+    border-width: 0;
+    border-bottom: 1px gray;
+    border-style: dotted;
+  }
+
+  form {
+    padding-inline: 2rem;
+  }
+}

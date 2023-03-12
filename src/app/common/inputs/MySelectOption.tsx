@@ -28,7 +28,7 @@ export default function MySelectOption(props: Props) {
     <>
       <div className="select-option" style={{ marginTop: "1.7rem" }}>
         <select
-          value={field.value?.toString() || null}
+          value={field?.value?.toString() || null}
           name={props.name}
           onChange={(e) => helpers.setValue(e.target.value)}
           onBlur={() => helpers.setTouched(true)}

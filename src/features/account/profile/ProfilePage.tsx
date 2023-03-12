@@ -4,19 +4,25 @@ import { useStore } from "../../../app/stores/store";
 import { userImage } from "../../../app/api/image";
 import { useParams } from "react-router-dom";
 import Loading from "../../../app/common/loading/Loading";
+import "./profile.css";
+import BorderButton from "../../../app/common/buttons/BorderButton";
+import { colors } from "../../../app/utility/SD";
+import ProfileImages from "./ProfileImages";
 
 interface Props {
-  userName: string;
+  userName?: string;
 }
 
 export default observer(function ProfilePage({ userName }: Props) {
+  userName = "Admin";
+
   const {
     profileStore: { loadProfile, loadingProfile, profile, mainPhoto },
   } = useStore();
 
   useEffect(() => {
     if (profile === undefined || profile.userName !== userName) {
-      loadProfile(userName);
+      loadProfile(userName!);
     }
   }, [loadProfile, userName]);
 
@@ -31,7 +37,13 @@ export default observer(function ProfilePage({ userName }: Props) {
             <span>TOPICS</span>
           </div>
           <div className="img">
-            <img src={userImage(mainPhoto?.url, 300, 300)} />
+            <img
+              src={userImage(
+                profile?.photos.find((b) => b.isMain)?.url,
+                150,
+                150
+              )}
+            />
           </div>
           <div className="comments">
             <span>2486</span>
@@ -40,18 +52,19 @@ export default observer(function ProfilePage({ userName }: Props) {
         </div>
         <div className="info">{profile?.fullName}</div>
         <div className="buttons">
-          <button type="button">Topics</button>
-          <button type="button">Message</button>
+          <BorderButton color={colors.info} value="Topics" />
+          <BorderButton color="white" value="Message" />
         </div>
       </div>
       <div className="content">
         <ul className="filters">
-          <li className="item">images</li>
+          <li className="item active">images</li>
           <li className="item">about</li>
           <li className="item">other</li>
         </ul>
         <ul className="images"></ul>
       </div>
+      <ProfileImages userName={userName!} />
     </section>
   );
 });

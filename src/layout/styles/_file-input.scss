@@ -1,0 +1,27 @@
+.my-file-input {
+  margin-top: 1.5rem;
+  width: 100%;
+  button {
+    width: 100%;
+    padding-block: 10px;
+    background-color: transparent;
+    border-radius: 50px;
+    color: white;
+    border: 1px dashed var(--color-primary);
+    cursor: pointer;
+    transition: 0.3s;
+    padding-inline: 5px;
+    font-size: 1rem;
+    overflow-x: hidden;
+
+    &:hover,
+    &:active {
+      background-color: var(--color-primary);
+      color: black;
+    }
+
+    span {
+      width: max-content;
+    }
+  }
+}

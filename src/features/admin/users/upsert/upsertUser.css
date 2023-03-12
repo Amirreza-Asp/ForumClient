@@ -10,8 +10,8 @@
   overflow: hidden;
   width: calc(17vw + 20rem);
 
-  outline: 14px solid #282828;
-  background-color: #282828;
+  outline: 14px solid rgba(255, 255, 255, 0.09);
+  background-color: rgba(255, 255, 255, 0.09);
 }
 
 @media screen and (max-width: 600px) {

@@ -6,6 +6,7 @@ import ProfileStore from "./profileStore";
 import AccountStore from "./accountStore";
 import LayoutStore from "./layoutStore";
 import RoleStore from "./roleStore";
+import CommunityStore from "./communityStore";
 
 interface Store {
   commonStore: CommonStore;
@@ -15,6 +16,7 @@ interface Store {
   accountStore: AccountStore;
   layoutStore: LayoutStore;
   roleStore: RoleStore;
+  communityStore: CommunityStore;
 }
 
 export const store: Store = {
@@ -25,6 +27,7 @@ export const store: Store = {
   accountStore: new AccountStore(),
   layoutStore: new LayoutStore(),
   roleStore: new RoleStore(),
+  communityStore: new CommunityStore(),
 };
 
 export const StoreContext = createContext(store);

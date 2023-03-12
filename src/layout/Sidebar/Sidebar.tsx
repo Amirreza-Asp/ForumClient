@@ -1,12 +1,20 @@
 import "./sidebar.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { useStore } from "../../app/stores/store";
 import { observer } from "mobx-react-lite";
+import Loading from "../../app/common/loading/Loading";
+import { communityIcon, communityImage } from "../../app/api/image";
+import { GridQuery } from "../../app/models/Queries";
 
 export default observer(function Sidebar() {
   const {
     layoutStore: { close },
+    communityStore: { fetchCommunities, loadingCommunities, communities },
   } = useStore();
+
+  useEffect(() => {
+    if (!communities) fetchCommunities(new GridQuery());
+  }, [fetchCommunities]);
 
   return (
     // <!-- sidebar -->
@@ -22,42 +30,21 @@ export default observer(function Sidebar() {
         <hr />
         <small className="menu-heading">Categories</small>
         <ul className="tools">
-          <li>
-            <a href="#">
-              <i className="fa-thin fa-money-bill-1-wave"></i>
-              <span>Price</span>
-            </a>
-          </li>
-          <li className="active">
-            <a href="#">
-              <i className="fa-thin fa-monitor-waveform"></i>
-              <span>Trade</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i className="fa-thin fa-calendar-days"></i>
-              <span>Schedules</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i className="fa-thin fa-handshake"></i>
-              <span>Transaction</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i className="fa-thin fa-earth"></i>
-              <span>World</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i className="fa-thin fa-user-secret"></i>
-              <span>Secret</span>
-            </a>
-          </li>
+          {loadingCommunities ? (
+            <Loading color="cyan" width={30} />
+          ) : (
+            communities?.data.map((item) => (
+              <li>
+                <a href="#">
+                  <img
+                    src={communityIcon(item.icon, 40, 40)}
+                    alt={item.title}
+                  />
+                  <span>{item.title}</span>
+                </a>
+              </li>
+            ))
+          )}
         </ul>
         <hr />
         <small className="menu-heading">

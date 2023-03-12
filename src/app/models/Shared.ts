@@ -3,4 +3,5 @@ export interface Pagenation<T> {
   total: number;
   page: number;
   size: number;
+  totalPages: number;
 }

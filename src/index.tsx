@@ -4,8 +4,7 @@ import "./index.css";
 import { Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import App from "./layout/App";
-import "react-toastify/dist/ReactToastify.min.css";
-import "@sweetalert2/themes/dark/dark.css";
+import "react-toastify/dist/ReactToastify.css";
 
 export const history = createBrowserHistory();
 

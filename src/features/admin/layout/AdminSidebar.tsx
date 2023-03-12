@@ -22,7 +22,11 @@ export default observer(function AdminSidebar({
       href: routes.Admin_Dashboard,
     },
     { icon: "fa-thin fa-user", title: "User", href: routes.Admin_Users },
-    { icon: "fa-thin fa-calendar-days", title: "Community", href: "#" },
+    {
+      icon: "fa-thin fa-calendar-days",
+      title: "Community",
+      href: routes.Admin_Communities,
+    },
     { icon: "fa-thin fa-handshake", title: "Topics", href: "#" },
     { icon: "fa-thin fa-earth", title: "Info", href: "#" },
     { icon: "fa-thin fa-user-secret", title: "Exit", href: "#" },
@@ -38,12 +42,7 @@ export default observer(function AdminSidebar({
         <ul className="tools">
           {items.map((item) => (
             <li
-              className={
-                window.location.pathname.replaceAll("/", "") ===
-                item.href.replaceAll("/", "")
-                  ? "active"
-                  : ""
-              }
+              className={window.location.pathname === item.href ? "active" : ""}
               key={item.title}
             >
               <Link to={item.href} onClick={() => setCurrent(item.title)}>

@@ -71,9 +71,14 @@
   ul {
     padding-bottom: 1.5em;
 
-    i {
-      font-size: 1.6em;
-      margin-right: 0.5em;
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+      margin-right: 0.8em;
+      filter: invert(100%) brightness(80%);
     }
   }
 

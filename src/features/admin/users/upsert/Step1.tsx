@@ -1,7 +1,4 @@
-import React from "react";
-import BorderButton from "../../../../app/common/buttons/BorderButton";
 import LineButton from "../../../../app/common/buttons/LineButton";
-import NeonButton from "../../../../app/common/buttons/NeonButton";
 import MyTextInput from "../../../../app/common/inputs/MyTextInput";
 
 interface Props {
