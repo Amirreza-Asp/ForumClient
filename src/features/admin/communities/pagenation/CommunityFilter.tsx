@@ -44,11 +44,6 @@ export default function CommunityFilters({
               type="date"
               placeholder="Family"
               className="mt-10"
-              defaultValue={
-                filters.createAt
-                  ? format(filters.createAt, "yyyy-MM-dd")
-                  : undefined
-              }
               onChange={(e) => {
                 setFilters({ ...filters, createAt: new Date(e.target.value) });
               }}
