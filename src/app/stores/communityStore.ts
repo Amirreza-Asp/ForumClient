@@ -21,7 +21,7 @@ export default class CommunityStore {
       const communities = await agent.communities.pagenation(query);
       runInAction(() => {
         communities.data.forEach((item) => {
-          item.createAt = new Date(item.createAt + "Z");
+          item.createAt = new Date(item.createAt);
         });
         this.communities = communities;
         this.loadingCommunities = false;

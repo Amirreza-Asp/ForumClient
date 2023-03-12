@@ -34,7 +34,7 @@ export default observer(function Sidebar() {
             <Loading color="cyan" width={30} />
           ) : (
             communities?.data.map((item) => (
-              <li>
+              <li key={item.id}>
                 <a href="#">
                   <img
                     src={communityIcon(item.icon, 40, 40)}
