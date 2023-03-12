@@ -52,12 +52,7 @@ export default observer(function CommunityPagenation() {
 
     keys.forEach((key, index) => {
       if (filters.hasOwnProperty(key)) {
-        if (key == "createAt") {
-          filtered.push({
-            column: key,
-            value: format(values[index], "yyyy-MM-dd"),
-          });
-        } else {
+        if (key !== "createAt") {
           filtered.push({
             column: key,
             value:
