@@ -55,6 +55,9 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active,
 input:autofill {
   background: transparent !important;
+  -webkit-box-shadow: 0 0 100px rgba(0, 0, 0, 1) inset !important;
+  background-image: none !important;
+  -webkit-text-fill-color: rgb(216, 216, 216);
 }
 
 .bg-glass {
