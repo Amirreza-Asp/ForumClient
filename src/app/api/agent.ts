@@ -33,7 +33,6 @@ axios.interceptors.request.use((config) => {
     ...config.headers,
     "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
-    crossDomain: true,
   };
   if (token) {
     config.headers = {
@@ -46,11 +45,11 @@ axios.interceptors.request.use((config) => {
 
 axios.interceptors.response.use(
   async (response) => {
-    await sleep(1000);
+    if (process.env.NODE_ENV === "development") await sleep(1000);
     return response;
   },
   async (error: AxiosError) => {
-    await sleep(500);
+    if (process.env.NODE_ENV === "development") await sleep(500);
     const { data, status, config } = error.response as AxiosResponse;
     switch (status) {
       case 400:

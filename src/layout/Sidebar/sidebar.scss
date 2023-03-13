@@ -1,7 +1,7 @@
 @import "../styles/variables";
 
 .sidebar {
-  background: rgba(32, 32, 32, 0.7);
+  background: rgba(32, 32, 32, 0.4);
   z-index: 100;
   color: var(--color-quinary);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
@@ -161,6 +161,12 @@
           display: flex;
           justify-content: start;
           align-items: center;
+          gap: 17px;
+
+          i {
+            width: 25px;
+            font-size: 1.4rem;
+          }
         }
 
         &:hover {
@@ -191,30 +197,6 @@
 
   li.active .badge {
     background-color: var(--color-tertiary);
-  }
-
-  .profile {
-    padding: 1.7em 1em 1.7em 1em;
-    display: flex;
-    align-items: center;
-    a {
-      img {
-        width: 2.5em;
-        height: 2.5em;
-        border-radius: 50%;
-        object-fit: cover;
-        object-position: center;
-        display: inline-block;
-        text-align: center;
-        margin-right: 15px;
-      }
-    }
-
-    h4 {
-      margin: 0 0 0.5em 0;
-
-      color: var(--color-primary);
-    }
   }
 }
 

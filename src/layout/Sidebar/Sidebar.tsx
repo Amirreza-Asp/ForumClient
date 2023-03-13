@@ -79,18 +79,6 @@ export default observer(function Sidebar() {
             </a>
           </li>
         </ul>
-        <div className="profile">
-          <a href="#">
-            <img
-              src="assets/images/christopher-campbell-rDEOVtE7vOs-unsplash.jpg"
-              alt="user image"
-            />
-          </a>
-          <div>
-            <h4>John Doe</h4>
-            <small>Free Account</small>
-          </div>
-        </div>
       </div>
     </aside>
   );
