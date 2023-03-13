@@ -45,6 +45,10 @@ code {
   border: var(--border-glass);
 }
 
+.swal2-title {
+  color: rgb(208, 208, 208) !important;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

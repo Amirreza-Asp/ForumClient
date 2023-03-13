@@ -5,6 +5,10 @@ $filter-color: #cecbff;
   color: var(--color-primary);
   padding: 0.5rem 1rem;
 
+  @include media-tablet {
+    padding-inline: 0;
+  }
+
   &-header {
     display: flex;
     justify-content: space-between;
@@ -28,11 +32,16 @@ $filter-color: #cecbff;
         border-radius: 5px;
         font-size: 0.95rem;
         padding: 6px 14px;
-        // box-shadow: 0 0 7.5px $filter-color;
+        box-shadow: 0 0 3px $filter-color;
         border: 1px solid $filter-color;
         color: $filter-color;
         cursor: pointer;
         background-color: rgba(0, 0, 0, 0.4);
+
+        @include media-medium {
+          width: 70px;
+          font-size: 0.9rem;
+        }
 
         i {
           position: absolute;
@@ -91,6 +100,11 @@ $filter-color: #cecbff;
         border-radius: 5px;
         cursor: pointer;
 
+        @include media-medium {
+          width: 40px;
+          font-size: 0.9rem;
+        }
+
         &:hover {
           background: radial-gradient($filter-color, var(--color-bg));
           color: black;
@@ -109,6 +123,11 @@ $filter-color: #cecbff;
         border-radius: 5px;
         transition: 0.3s;
         cursor: pointer;
+
+        @include media-medium {
+          width: 95px;
+          font-size: 0.9rem;
+        }
 
         &:hover {
           background: radial-gradient(rgb(47, 255, 57), var(--color-bg));
