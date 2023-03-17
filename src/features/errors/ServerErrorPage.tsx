@@ -7,7 +7,8 @@ export default function ServerErrorPage() {
   const { commonStore } = useStore();
 
   return (
-    <div
+    <section
+      className="page"
       style={{
         display: "flex",
         flexDirection: "column",
@@ -25,6 +26,6 @@ export default function ServerErrorPage() {
         </div>
       )}
       <NeonButton type="button" value="Ok" onClick={() => history.goBack()} />
-    </div>
+    </section>
   );
 }

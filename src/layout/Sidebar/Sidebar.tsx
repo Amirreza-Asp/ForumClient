@@ -20,14 +20,6 @@ export default observer(function Sidebar() {
     // <!-- sidebar -->
     <aside className={`sidebar ${close ? "close" : ""}`}>
       <div>
-        <a
-          href="#"
-          className="brand"
-          style={{ marginBottom: 10, textAlign: "center" }}
-        >
-          <span>Aryla</span>
-        </a>
-        <hr />
         <small className="menu-heading">Categories</small>
         <ul className="tools">
           {loadingCommunities ? (

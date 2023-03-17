@@ -30,7 +30,7 @@ export default function Dashboard() {
     value: "1100GB",
   };
   return (
-    <>
+    <section className="page">
       <div style={{ height: "200px", width: "100%" }}>
         <DashboardContentChart />
       </div>
@@ -44,6 +44,6 @@ export default function Dashboard() {
         <NewMemberChart />
         <BestCommunityActivityTime />
       </div>
-    </>
+    </section>
   );
 }

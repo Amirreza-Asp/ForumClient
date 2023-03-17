@@ -16,7 +16,6 @@ import { v4 as uuid } from "uuid";
 import { UpsertCommunity } from "../../../../app/models/Community";
 import { GridQuery } from "../../../../app/models/Queries";
 import Loading from "../../../../app/common/loading/Loading";
-import { communityIcon, communityImage } from "../../../../app/api/image";
 import { SuccessSwal } from "../../../../app/common/modals/SwalModal";
 
 interface Props {

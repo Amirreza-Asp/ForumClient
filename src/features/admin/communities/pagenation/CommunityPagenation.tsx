@@ -73,7 +73,7 @@ export default observer(function CommunityPagenation() {
     return <Loading width={80} />;
 
   return (
-    <section className="pagenation">
+    <section className="pagenation page">
       <div className="bg-item">
         <div className="content">
           <div className="table-actions">

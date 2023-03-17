@@ -1,24 +1,16 @@
 import "./styles/App.css";
 import "./../lib/FontAwesome.Pro.6.2.1/css/all.css";
-import Home from "./../features/home/Home";
-import { Route, Switch, useLocation } from "react-router-dom";
-import { routes } from "../app/utility/SD";
 import { observer } from "mobx-react-lite";
 import { history } from "..";
 import { ToastContainer } from "react-toastify";
 import ModalContainer from "../app/common/modals/ModalContainer";
-import ServerErrorPage from "./../features/errors/ServerErrorPage";
-import AdminLayout from "../features/admin/layout/AdminLayout";
-import Dashboard from "../features/admin/home/dashboard/Dashboard";
-import UserPagenation from "../features/admin/users/pagenation/UserPagenation";
-import Layout from "./Layout";
 import { store, StoreContext, useStore } from "../app/stores/store";
-import React, { useEffect } from "react";
-import ProfilePage from "../features/account/profile/ProfilePage";
-import CommunityPagenation from "../features/admin/communities/pagenation/CommunityPagenation";
+import { useEffect } from "react";
+import RouterView from "../routes/RouterView";
 
 function App() {
   const { accountStore, commonStore } = useStore();
+
   history.listen(() => {
     accountStore.setPopUp(false);
   });
@@ -39,43 +31,7 @@ function App() {
       />
       <ModalContainer />
 
-      <Switch>
-        <Route path="/admin/:path?" exact>
-          <AdminLayout>
-            <Switch>
-              <Route
-                path={routes.Admin_Dashboard}
-                exact
-                component={Dashboard}
-              />
-              <Route
-                path={routes.Admin_Users}
-                exact
-                component={UserPagenation}
-              />
-              <Route
-                path={routes.Admin_Communities}
-                exact
-                component={CommunityPagenation}
-              />
-            </Switch>
-          </AdminLayout>
-        </Route>
-
-        <Route>
-          <Layout>
-            <Switch>
-              <Route path={routes.Home} exact component={Home} />
-              <Route
-                path={routes.ServerError}
-                exact
-                component={ServerErrorPage}
-              />
-              <Route path="/profile" exact component={ProfilePage} />
-            </Switch>
-          </Layout>
-        </Route>
-      </Switch>
+      <RouterView />
     </StoreContext.Provider>
   );
 }

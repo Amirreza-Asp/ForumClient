@@ -11,15 +11,15 @@ export default observer(function Home() {
   } = useStore();
 
   return (
-    <main className={`${close ? "close" : ""}`}>
-      <section className="content">
+    <section className={`${close ? "close" : ""} page home-main`}>
+      <div className="content">
         <HomeMain />
 
-        <section className="contributors">
+        <div className="contributors">
           <HomeProfile />
           <HomeContributors />
-        </section>
-      </section>
-    </main>
+        </div>
+      </div>
+    </section>
   );
 });
