@@ -1,16 +1,13 @@
 import React from "react";
 import { useField } from "formik";
 import { boolean } from "yup";
-
-export interface SelectOptions {
-  text: string;
-  value: string | number;
-}
+import { SelectOptions } from "../../models/Shared";
 
 interface Props {
   name: string;
   options: SelectOptions[];
   default?: string;
+  className?: string;
 }
 
 export default function MySelectOption(props: Props) {
@@ -18,17 +15,26 @@ export default function MySelectOption(props: Props) {
 
   const options = props.options.map((opt, index) => {
     return (
-      <option key={index} value={opt.value}>
+      <option key={index} value={opt.value.toString()}>
         {opt.text}
       </option>
     );
   });
 
+  const regexExp =
+    /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+  if (
+    field.value &&
+    typeof field.value == "string" &&
+    regexExp.test(field.value.toLowerCase())
+  )
+    field.value = field.value.toLowerCase();
+
   return (
     <>
-      <div className="select-option" style={{ marginTop: "1.7rem" }}>
+      <div className={`select-option ${props.className}`}>
         <select
-          value={field?.value?.toString() || null}
+          value={field.value}
           name={props.name}
           onChange={(e) => helpers.setValue(e.target.value)}
           onBlur={() => helpers.setTouched(true)}

@@ -1,8 +1,7 @@
 import React from "react";
 import NeonButton from "../../../app/common/buttons/NeonButton";
-import MySelectOption, {
-  SelectOptions,
-} from "../../../app/common/inputs/MySelectOption";
+import MySelectOption from "../../../app/common/inputs/MySelectOption";
+import { SelectOptions } from "../../../app/models/Shared";
 import MyDateInput from "./../../../app/common/inputs/MyDateInput";
 interface Props {
   visible: boolean;

@@ -33,6 +33,7 @@
     "react-file-base64": "^1.0.3",
     "react-loader-spinner": "^5.3.4",
     "react-modal": "^3.16.1",
+    "react-quill": "^2.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",

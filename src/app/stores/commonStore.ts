@@ -3,7 +3,7 @@ import { makeAutoObservable, reaction } from "mobx";
 import agent from "../api/agent";
 
 export default class CommonStore {
-  error: ServerError | null = null;
+  error: string | null = null;
   token: string | null = localStorage.getItem("jwt");
   refreshToken: string | null = localStorage.getItem("refreshToken");
   appLoaded = false;
@@ -37,7 +37,7 @@ export default class CommonStore {
     localStorage.removeItem("refreshToken");
   };
 
-  setServerError(error: ServerError) {
+  setServerError(error: string) {
     this.error = error;
   }
 

@@ -2,8 +2,9 @@ export const routes = {
   Home: "/",
   ServerError: "/error/server-error",
   Admin_Dashboard: "/admin",
-  Admin_Users: "/admin/user",
-  Admin_Communities: "/admin/community",
+  Admin_Users: "/admin/User",
+  Admin_Communities: "/admin/Community",
+  Admin_Topics: "/admin/Topic",
 };
 
 export const roles = {

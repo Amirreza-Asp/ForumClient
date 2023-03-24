@@ -2,30 +2,20 @@ import React from "react";
 import { useStore } from "../../app/stores/store";
 import NeonButton from "../../app/common/buttons/NeonButton";
 import { history } from "../..";
+import "./style.css";
 
 export default function ServerErrorPage() {
   const { commonStore } = useStore();
 
   return (
-    <section
-      className="page"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <h1 style={{ color: "white" }}>Server Error</h1>
-      <h5 style={{ color: "red" }}>{commonStore.error?.message}</h5>
-      {commonStore.error?.details && (
-        <div>
-          <h4 style={{ color: "teal" }}>Stack trace</h4>
-          <code style={{ marginTop: 10 }}>{commonStore.error?.details}</code>
+    <section className="page server-error">
+      <h1 className="title">Server Error</h1>
+      {commonStore.error && (
+        <div className="stack-box">
+          <h4 style={{ color: "teal", marginBottom: 15 }}>Stack trace</h4>
+          <code>{commonStore.error}</code>
         </div>
       )}
-      <NeonButton type="button" value="Ok" onClick={() => history.goBack()} />
     </section>
   );
 }

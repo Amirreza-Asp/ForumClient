@@ -18,6 +18,24 @@ code {
     monospace;
 }
 
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #2a2f44;
+  border-radius: 10px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #acafbc transparent;
+}
+
 .ReactModal__Overlay {
   background-color: rgba(0, 0, 0, 0.75) !important;
   backdrop-filter: blur(3px);
@@ -25,6 +43,12 @@ code {
   display: flex;
   align-items: center;
   z-index: 50;
+  transition: opacity 0.2s;
+  opacity: 0;
+}
+
+.ReactModal__Overlay.ReactModal__Overlay--after-open {
+  opacity: 1;
 }
 
 .ReactModal__Content {
@@ -32,8 +56,10 @@ code {
   border: initial !important;
   inset: 0 !important;
   margin: auto;
-  height: max-content;
   width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .swal2-container.swal2-center.swal2-backdrop-show {
@@ -47,6 +73,12 @@ code {
 
 .swal2-title {
   color: rgb(208, 208, 208) !important;
+}
+
+.swal2-success-circular-line-left,
+.swal2-success-circular-line-right,
+.swal2-success-fix {
+  background-color: transparent !important;
 }
 
 input:-webkit-autofill,
@@ -129,8 +161,49 @@ input:autofill {
   animation: appear 2s ease;
 }
 
+.two-line {
+  display: -webkit-box;
+  max-width: 100%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 @keyframes appear {
   from {
     opacity: 0;
   }
+}
+
+/* text editor */
+.ql-picker-label,
+.ql-formats > button > svg {
+  filter: invert(100%);
+}
+
+.ql-formats > button.ql-active > svg {
+  filter: invert(0);
+}
+
+.ql-formats > button:hover > svg,
+.ql-picker-label:hover {
+  filter: invert(30%);
+}
+
+#ql-picker-options-0 {
+  background-color: rgb(23, 23, 23) !important;
+  color: white;
+  border: 1px solid rgb(66, 66, 66);
+  box-shadow: 0 0 10px rgb(53, 53, 53);
+}
+
+.ql-editor {
+  color: ghostwhite !important;
+  height: 150px !important;
+  overflow-y: auto;
+}
+
+.ql-editor.ql-blank::before {
+  color: rgb(113, 113, 113) !important;
 }

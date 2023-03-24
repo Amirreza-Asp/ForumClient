@@ -5,3 +5,8 @@ export interface Pagenation<T> {
   size: number;
   totalPages: number;
 }
+
+export interface SelectOptions {
+  text: string;
+  value: string | number;
+}

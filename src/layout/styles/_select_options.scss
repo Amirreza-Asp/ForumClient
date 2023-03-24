@@ -5,6 +5,7 @@
   position: relative;
   z-index: 1;
   margin-bottom: 5px;
+  margin-top: 1.7rem;
 
   select {
     width: 100%;
@@ -16,6 +17,7 @@
     color: var(--color-primary);
     padding-inline: 10px;
     font-size: 1rem;
+    cursor: pointer;
 
     &:focus {
       outline: none;
@@ -27,6 +29,7 @@
       background: var(--color-item);
       color: #fff;
       text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+      cursor: pointer;
     }
   }
 }

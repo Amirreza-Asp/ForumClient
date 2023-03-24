@@ -24,6 +24,7 @@ export function RemoveSwal(
             text: "",
             icon: "success",
             showLoaderOnConfirm: true,
+            background: "rgba(255,255,255,.09)",
             preConfirm: preRemove,
           });
         })
@@ -40,6 +41,7 @@ export function SuccessSwal(title: string, preConfirm: () => void) {
     confirmButtonText: "Ok",
     timer: 3000,
     timerProgressBar: true,
+    background: "rgba(255,255,255,.09)",
     preConfirm: preConfirm,
   });
 }

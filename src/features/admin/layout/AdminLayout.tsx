@@ -7,10 +7,20 @@ interface Props {
 }
 
 export default function AdminLayout({ children }: Props) {
+  function getCurrentPage(): string {
+    const location = window.location.pathname;
+    const filteredLocation = location
+      .replaceAll("/", "")
+      .replaceAll("admin", "")
+      .replaceAll("Admin", "");
+
+    if (filteredLocation) return filteredLocation;
+
+    return "Dashboard";
+  }
+
   const [active, setActive] = useState(false);
-  const [current, setCurrent] = useState(
-    window.location.pathname.replaceAll("/", "")
-  );
+  const [current, setCurrent] = useState(getCurrentPage());
 
   return (
     <div className="layout-conatiner">

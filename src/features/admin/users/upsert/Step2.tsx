@@ -1,10 +1,9 @@
 import React from "react";
 import NeonButton from "../../../../app/common/buttons/NeonButton";
-import MySelectOption, {
-  SelectOptions,
-} from "../../../../app/common/inputs/MySelectOption";
+import MySelectOption from "../../../../app/common/inputs/MySelectOption";
 import MyDateInput from "../../../../app/common/inputs/MyDateInput";
 import LineButton from "../../../../app/common/buttons/LineButton";
+import { SelectOptions } from "../../../../app/models/Shared";
 interface Props {
   visible: boolean;
   goToNextStep: () => void;

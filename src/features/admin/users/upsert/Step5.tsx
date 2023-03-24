@@ -2,10 +2,9 @@ import React from "react";
 import LineButton from "../../../../app/common/buttons/LineButton";
 import NeonButton from "../../../../app/common/buttons/NeonButton";
 import ImageUploadWidget from "../../../../app/common/imageUpload/ImageUploadWidget";
-import MySelectOption, {
-  SelectOptions,
-} from "../../../../app/common/inputs/MySelectOption";
+import MySelectOption from "../../../../app/common/inputs/MySelectOption";
 import { Role } from "../../../../app/models/Role";
+import { SelectOptions } from "../../../../app/models/Shared";
 
 interface Props {
   visible: boolean;

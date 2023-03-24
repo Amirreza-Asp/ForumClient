@@ -8,6 +8,7 @@ interface Props {
   icon?: string;
   placeholder?: string;
   value?: string;
+  className?: string;
 }
 
 export default function MyTextInput({
@@ -16,6 +17,7 @@ export default function MyTextInput({
   label,
   icon,
   placeholder,
+  className = "",
 }: Props) {
   const [field, meta] = useField(name);
 
@@ -27,7 +29,7 @@ export default function MyTextInput({
   return (
     <>
       <div
-        className="text-input"
+        className={`text-input ${className}`}
         style={{ marginTop: label ? "3rem" : "1.7rem" }}
       >
         {label && (

@@ -14,9 +14,10 @@ import { Photo, Profile } from "../models/Profile";
 import { store } from "../stores/store";
 import { routes } from "../utility/SD";
 import { GridQuery } from "../models/Queries";
-import { Pagenation } from "../models/Shared";
+import { Pagenation, SelectOptions } from "../models/Shared";
 import { Role } from "../models/Role";
 import { Community, UpsertCommunity } from "../models/Community";
+import { TopicDetails, TopicSummary, UpsertTopic } from "../models/Topic";
 
 axios.defaults.baseURL = process.env.REACT_APP_SERVER;
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
@@ -45,7 +46,7 @@ axios.interceptors.request.use((config) => {
 
 axios.interceptors.response.use(
   async (response) => {
-    // if (process.env.NODE_ENV === "development") await sleep(1000);
+    if (process.env.NODE_ENV === "development") await sleep(1000);
     return response;
   },
   async (error: AxiosError) => {
@@ -73,6 +74,7 @@ axios.interceptors.response.use(
         toast.error("unauthorized");
         break;
       case 500:
+        console.log(data);
         store.commonStore.setServerError(data);
         store.modalStore.closeModal();
         history.push(routes.ServerError);
@@ -94,6 +96,7 @@ const requests = {
 const communities = {
   pagenation: (query: GridQuery) =>
     requests.post<Pagenation<Community>>("community/pagenation", query),
+  selectOptions: () => requests.get<SelectOptions[]>("community/SelectOptions"),
   find: (id: string) => requests.get<Community>(`community/find/${id}`),
   add: (model: UpsertCommunity) => requests.post("community/create", model),
   update: (model: UpsertCommunity) => requests.put("community/update", model),
@@ -136,12 +139,22 @@ const user = {
   update: (model: UpsertUser) => requests.put("/user/update", model),
 };
 
+const topic = {
+  pagenation: (query: GridQuery) =>
+    requests.post<Pagenation<TopicSummary>>(`topic/pagenation`, query),
+  find: (id: string) => requests.get<TopicDetails>(`topic/find/${id}`),
+  add: (model: UpsertTopic) => requests.post("topic/create", model),
+  update: (model: UpsertTopic) => requests.put("topic/update", model),
+  remove: (id: string) => requests.delete(`topic/remove?id=${id}`),
+};
+
 const agent = {
   Account,
   profile,
   user,
   role,
   communities,
+  topic,
 };
 
 export default agent;

@@ -27,9 +27,13 @@ export default observer(function AdminSidebar({
       title: "Community",
       href: routes.Admin_Communities,
     },
-    { icon: "fa-thin fa-handshake", title: "Topics", href: "#" },
+    {
+      icon: "fa-thin fa-handshake",
+      title: "Topic",
+      href: routes.Admin_Topics,
+    },
     { icon: "fa-thin fa-earth", title: "Info", href: "#" },
-    { icon: "fa-thin fa-user-secret", title: "Exit", href: "#" },
+    { icon: "fa-thin fa-user-secret", title: "Exit", href: routes.Home },
   ];
 
   return (

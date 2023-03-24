@@ -9,6 +9,7 @@ import Layout from "../layout/Layout";
 import Home from "../features/home/Home";
 import ServerErrorPage from "../features/errors/ServerErrorPage";
 import ProfilePage from "../features/account/profile/ProfilePage";
+import TopicPagenation from "../features/admin/topics/pagenation/TopicPagenation";
 
 export default function RouterView() {
   return (
@@ -22,6 +23,11 @@ export default function RouterView() {
               path={routes.Admin_Communities}
               exact
               component={CommunityPagenation}
+            />
+            <Route
+              path={routes.Admin_Topics}
+              exact
+              component={TopicPagenation}
             />
           </Switch>
         </AdminLayout>

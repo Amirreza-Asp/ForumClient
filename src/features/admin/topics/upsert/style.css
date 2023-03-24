@@ -1,0 +1,18 @@
+.upsert-topic-input,
+.upsert-topic-select {
+  margin-top: 0 !important;
+}
+
+.input-container {
+  margin-top: 30px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.upsert-topic {
+  height: 640px;
+  overflow-y: auto;
+}
