@@ -3,6 +3,7 @@ import NeonButton from "../../../app/common/buttons/NeonButton";
 import MySelectOption from "../../../app/common/inputs/MySelectOption";
 import { SelectOptions } from "../../../app/models/Shared";
 import MyDateInput from "./../../../app/common/inputs/MyDateInput";
+
 interface Props {
   visible: boolean;
   goToNextStep: () => void;
@@ -21,7 +22,7 @@ export default function RegisterStep2({
 
   return (
     <div className={`step-2 ${visible ? "active" : ""}`}>
-      <MyDateInput name="age" placeholder="Age" />
+      <MyDateInput name="age" />
       <MySelectOption name="isMale" options={genderOptions} />
       <div
         style={{

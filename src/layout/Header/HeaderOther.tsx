@@ -4,10 +4,19 @@ import { userImage } from "../../app/api/image";
 import HeaderAuthPopUp from "./HeaderAuthPopUp";
 import LoginForm from "../../features/account/login/LoginForm";
 import RegisterForm from "../../features/account/register/RegisterForm";
+import { useEffect } from "react";
 
 export default observer(function HeaderOther() {
-  const { accountStore, modalStore } = useStore();
+  const {
+    accountStore,
+    modalStore,
+    commentStore: { unreadCommentsCount, fetchUnreadCommentsCount },
+  } = useStore();
   const { user } = accountStore;
+
+  useEffect(() => {
+    if (!unreadCommentsCount) fetchUnreadCommentsCount();
+  }, [fetchUnreadCommentsCount]);
 
   return (
     <div className="layout-header-nav-other">
@@ -15,7 +24,9 @@ export default observer(function HeaderOther() {
         <>
           <div className="layout-header-nav-other-bell">
             <i className="fa fa-bell"></i>
-            <span className="notif">4</span>
+            {unreadCommentsCount && (
+              <span className="notif">{unreadCommentsCount}</span>
+            )}
           </div>
           <div className="layout-header-nav-other-message">
             <i className="fa fa-comment-alt-dots"></i>

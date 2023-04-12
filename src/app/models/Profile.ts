@@ -5,12 +5,11 @@ export interface Profile {
   email: string;
   isMale: boolean;
   age: Date;
-  photos: Photo[];
+  photo: Photo;
 }
 
 export interface Photo {
   id: string;
   url: string;
-  isMain: string;
   name: string;
 }

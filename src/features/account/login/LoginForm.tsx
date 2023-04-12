@@ -15,11 +15,6 @@ export default observer(function LoginForm() {
     password: Yup.string().required("Password is required"),
   });
 
-  function InputFocused(event: React.FocusEvent<HTMLInputElement, Element>) {
-    const label = event.target.previousElementSibling;
-    label?.classList.add("selected");
-  }
-
   return (
     <section className="login">
       <div className="login-container">

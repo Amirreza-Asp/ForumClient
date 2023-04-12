@@ -1,12 +1,19 @@
-import { makeAutoObservable, reaction } from "mobx";
+import { makeAutoObservable, reaction, runInAction } from "mobx";
 import { history } from "../..";
 import agent from "./../api/agent";
-import { Login, Register, User, UserResult } from "./../models/User";
+import {
+  Login,
+  Register,
+  UpdateUser,
+  User,
+  UserResult,
+} from "./../models/User";
 import { store } from "./store";
 
 export default class AccountStore {
   user: User | null = null;
   popUp: boolean = false;
+  loadingUpsertPhoto = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -27,7 +34,6 @@ export default class AccountStore {
       store.commonStore.setRefreshToken(user.refreshToken);
       this.setUser(user);
       store.modalStore.closeModal();
-      history.push("/");
     } catch (error) {
       throw error;
     }
@@ -54,6 +60,16 @@ export default class AccountStore {
     history.push("/");
   };
 
+  update = async (model: UpdateUser) => {
+    try {
+      const userResult = await agent.Account.update(model);
+      this.setUser(userResult);
+      store.modalStore.closeModal();
+    } catch (error) {
+      throw error;
+    }
+  };
+
   register = async (model: Register) => {
     try {
       var result = await agent.Account.register(model);
@@ -66,7 +82,22 @@ export default class AccountStore {
     }
   };
 
+  upsertPhoto = async (file: Blob) => {
+    this.loadingUpsertPhoto = true;
+    try {
+      const result = await agent.Account.changePhoto(file);
+      runInAction(() => {
+        this.user!.image = result.data;
+        this.loadingUpsertPhoto = false;
+      });
+      store.modalStore.closeModal();
+    } catch (error) {
+      runInAction(() => (this.loadingUpsertPhoto = false));
+      throw error;
+    }
+  };
+
   private setUser = (userResult: UserResult) => {
-    this.user = new User(userResult);
+    this.user = { ...userResult, age: new Date(userResult.age) };
   };
 }

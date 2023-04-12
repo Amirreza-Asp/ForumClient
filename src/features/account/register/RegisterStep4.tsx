@@ -5,13 +5,13 @@ import NeonButton from "../../../app/common/buttons/NeonButton";
 interface Props {
   visible: boolean;
   goToPrevStep: () => void;
-  isSubmitting: boolean;
+  goToNextStep: () => void;
 }
 
 export default function RegisterStep4({
   visible,
   goToPrevStep,
-  isSubmitting,
+  goToNextStep,
 }: Props) {
   return (
     <div className={`step-4 ${visible ? "active" : ""}`}>
@@ -40,10 +40,10 @@ export default function RegisterStep4({
           onClick={goToPrevStep}
         />
         <NeonButton
-          type="submit"
+          type="button"
           shadow={false}
-          isLoading={isSubmitting}
-          value="Submit"
+          value="next"
+          onClick={goToNextStep}
         />
       </div>
     </div>

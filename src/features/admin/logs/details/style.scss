@@ -1,0 +1,60 @@
+.log-details {
+  padding: 1rem;
+  color: white;
+  width: 80vw;
+
+  .header {
+    margin-bottom: 20px;
+
+    h4 {
+      font-size: 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.6);
+      padding-bottom: 10px;
+    }
+  }
+
+  .list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .message,
+    .rendered {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .props {
+      ul {
+        margin-top: 10px;
+        padding-left: 10px;
+        list-style-type: none;
+        font-size: 0.9rem;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+
+        li {
+          overflow: auto;
+        }
+      }
+    }
+
+    .exception {
+      height: 200px;
+      overflow: auto;
+      font-size: 0.8rem;
+      color: rgb(255, 116, 116);
+      line-height: 1rem;
+    }
+  }
+
+  .time {
+    display: block;
+    margin-top: 10px;
+    opacity: 0.6;
+    font-size: 0.75rem;
+  }
+}

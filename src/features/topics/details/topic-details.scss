@@ -1,0 +1,400 @@
+@import "../../../layout/styles/variables";
+
+.topic-details {
+  margin: 2rem;
+  color: white;
+
+  @include media-medium {
+    margin: 1rem;
+  }
+  @include media-small {
+    margin-inline: 0.5rem;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    box-shadow: inset 0 0 30px 20px var(--color-item);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    padding: 1rem;
+    @include media-tablet {
+      flex-direction: column;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      gap: 20px;
+      margin-bottom: 20px;
+      padding: 20px 10px;
+
+      @include media-tablet {
+        width: 95%;
+        margin: auto;
+      }
+
+      @include media-medium {
+        width: 100%;
+      }
+
+      img {
+        border-radius: 50%;
+        width: 75px;
+        aspect-ratio: 1;
+        margin-left: 10px;
+      }
+
+      h3 {
+        letter-spacing: 0.75px;
+        margin-block: 10px;
+      }
+
+      .author {
+        padding-bottom: 10px;
+        border-bottom: 1px dashed gray;
+        width: 100%;
+      }
+
+      .other {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 17px;
+        font-family: "Times New Roman", Times, serif;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
+        padding-bottom: 1rem;
+
+        .fa.fa-thumbs-down {
+          transform: rotateY(180deg);
+        }
+
+        p {
+          font-size: 1.07rem;
+        }
+      }
+
+      .operations {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 5px;
+
+        $addBtnColor: rgb(101, 204, 255);
+
+        button.btn-add-comment {
+          background-color: transparent;
+          padding: 0.65rem 1.2rem;
+          border: 1px solid $addBtnColor;
+          color: $addBtnColor;
+          border-radius: 4px;
+          box-shadow: inset 0 0 12px $addBtnColor, 0 0 12px $addBtnColor;
+          position: relative;
+          perspective: preserve-3d;
+          cursor: pointer;
+          display: none;
+          transition: 0.5s;
+
+          @include media-tiny-desk {
+            display: block;
+          }
+
+          &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 110%;
+            height: 100%;
+            width: 100%;
+            background-color: $addBtnColor;
+            transform: perspective(280px) rotateX(84deg);
+            filter: blur(50px);
+            opacity: 0.9;
+            pointer-events: none;
+            transition: 0.5s;
+          }
+
+          &:hover,
+          &:active {
+            box-shadow: inset 0 0 80px 10px $addBtnColor, 0 0 20px $addBtnColor;
+            color: black;
+
+            &::before {
+              opacity: 1;
+              filter: blur(40px);
+            }
+          }
+        }
+      }
+    }
+
+    .topic {
+      width: 70%;
+      border-left: 1px dashed gray;
+      padding-left: 30px;
+      padding-top: 30px;
+
+      @include media-desktop {
+        width: 65%;
+      }
+
+      @include media-tablet {
+        width: 100%;
+        margin: auto;
+
+        border-left: none;
+      }
+
+      @include media-medium {
+        padding-inline: 10px;
+      }
+
+      h4 {
+        margin-bottom: 30px;
+        font-size: 1.4rem;
+        position: relative;
+        color: transparent;
+        background: radial-gradient(aqua, rgb(255, 245, 245));
+        background-position-x: 0% 100%;
+        background-clip: text;
+        transition: all 0.3s;
+      }
+
+      img {
+        width: 550px;
+        height: 250px;
+        object-fit: cover;
+        object-position: center;
+
+        @include media-tablet {
+          width: 300px;
+          height: 150px;
+        }
+
+        @include media-tiny-desk {
+          width: 400px;
+          height: 200px;
+        }
+      }
+
+      .operations {
+        display: flex;
+        gap: 30px;
+        margin-top: 20px;
+
+        .like,
+        .dis-like {
+          display: flex;
+          gap: 6px;
+          align-items: center;
+          font-size: 1.2rem;
+          cursor: pointer;
+
+          span {
+            font-size: 1rem;
+          }
+        }
+
+        .like {
+          &.active {
+            color: yellowgreen;
+          }
+        }
+
+        .dis-like {
+          &.active {
+            color: red;
+          }
+        }
+      }
+    }
+  }
+
+  .comments-container {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+
+    .comments {
+      display: flex;
+      flex-direction: column;
+      color: white;
+      gap: 15px;
+      list-style: none;
+
+      &-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: inset 0 0 30px 10px var(--color-item);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        padding: 10px;
+        position: relative;
+        transition: 0.5s;
+        max-width: 1000px;
+
+        &.removed {
+          display: none;
+        }
+
+        .comment-operations {
+          position: absolute;
+          width: max-content;
+          height: max-content;
+          box-shadow: inset 0 0 50px rgb(26, 26, 26);
+          backdrop-filter: blur(25px);
+          padding: 10px 10px 1.5rem;
+          background: linear-gradient(rgb(40, 40, 40), gray);
+          clip-path: polygon(
+            0% 0%,
+            100% 0%,
+            100% 75%,
+            52% 76%,
+            20% 100%,
+            25% 75%,
+            0% 75%
+          );
+          right: 20px;
+          top: -60px;
+
+          display: none;
+
+          &.active {
+            display: block;
+          }
+
+          ul {
+            display: flex;
+            gap: 15px;
+            list-style-type: none;
+
+            li {
+              padding: 5px 20px;
+              cursor: pointer;
+              background-color: rgb(30, 30, 30);
+              transition: 0.3s;
+
+              &:first-child {
+                border: rgb(255, 200, 61) 1px solid;
+                color: rgb(255, 200, 61);
+                box-shadow: inset 0 0 10px rgba(255, 200, 61, 0.7);
+
+                &:hover,
+                &:active {
+                  background-color: rgb(255, 200, 61);
+                  box-shadow: inset 0 0 10px rgba(0, 0, 0);
+
+                  color: black;
+                }
+              }
+
+              &:last-child {
+                border: red 1px solid;
+                color: red;
+                box-shadow: inset 0 0 10px rgba(255, 0, 0, 0.7);
+
+                &:hover,
+                &:active {
+                  background-color: red;
+                  box-shadow: inset 0 0 10px rgba(0, 0, 0);
+
+                  color: black;
+                }
+              }
+            }
+          }
+        }
+
+        .prof {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 5px;
+          width: 80px;
+
+          img {
+            width: 50px;
+            aspect-ratio: 1;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            margin-inline: 10px;
+            object-fit: cover;
+            object-position: center;
+          }
+
+          p {
+            font-size: 0.7rem;
+            text-align: center;
+          }
+        }
+
+        .content {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          flex-grow: 1;
+
+          p {
+            font-size: 0.9rem;
+
+            @include media-medium {
+              font-size: 0.85rem;
+            }
+          }
+
+          .footer {
+            display: flex;
+            justify-content: space-between;
+
+            .reaction {
+              display: flex;
+              gap: 15px;
+
+              button {
+                background-color: transparent;
+                color: white;
+                border: 0;
+                display: flex;
+                gap: 5px;
+                align-items: center;
+                cursor: pointer;
+
+                .fa-thumbs-down {
+                  transform: rotateX(1turn);
+                }
+
+                &:first-child.active {
+                  color: yellowgreen;
+                }
+                &:last-child.active {
+                  color: red;
+                }
+              }
+            }
+          }
+
+          .time {
+            bottom: 0;
+            font-size: 0.8rem;
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+
+    @include media-tiny-desk {
+      flex-direction: column;
+
+      .add-comment {
+        display: none;
+      }
+    }
+  }
+}

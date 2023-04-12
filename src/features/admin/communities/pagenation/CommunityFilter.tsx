@@ -37,18 +37,6 @@ export default function CommunityFilters({
               }
             />
           </li>
-          <li className="item large" key="createdAt">
-            <label htmlFor="createdAt">CreatedAt</label>
-            <input
-              id="createdAt"
-              type="date"
-              placeholder="Family"
-              className="mt-10"
-              onChange={(e) => {
-                setFilters({ ...filters, createAt: new Date(e.target.value) });
-              }}
-            />
-          </li>
         </ul>
         <div className="button">
           <button className="filter-submit" type="button" onClick={handleClick}>

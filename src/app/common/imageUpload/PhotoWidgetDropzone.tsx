@@ -3,16 +3,17 @@ import { useDropzone } from "react-dropzone";
 
 interface Props {
   setFiles: (files: any) => void;
+  height: number;
 }
 
-export default function PhotoWidgetDropzone({ setFiles }: Props) {
+export default function PhotoWidgetDropzone({ setFiles, height }: Props) {
   const dzStyles = {
     border: "dashed 3px #eee",
     borderColor: "#eee",
     borderRadius: "5px",
     paddingTop: "30px",
     textAlign: "center" as "center",
-    height: 200,
+    height: height,
   };
 
   const dzActive = {
@@ -34,6 +35,7 @@ export default function PhotoWidgetDropzone({ setFiles }: Props) {
   return (
     <div
       {...getRootProps()}
+      className="dropzone"
       style={isDragActive ? { ...dzStyles, ...dzActive } : dzStyles}
     >
       <input {...getInputProps()} />

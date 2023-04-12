@@ -1,15 +1,14 @@
 export interface User {
   userName: string;
+  name: string;
+  family: string;
   fullName: string;
   email: string;
   image: string;
   role: string;
-}
-
-export class User implements User {
-  constructor(init: UserResult) {
-    Object.assign(this, init);
-  }
+  age: Date;
+  isMale: boolean;
+  phoneNumber: string;
 }
 
 export interface UserResult {
@@ -18,8 +17,23 @@ export interface UserResult {
   email: string;
   image: string;
   role: string;
+  age: Date;
+  name: string;
+  phoneNumber: string;
+  family: string;
+  isMale: boolean;
   token: string;
   refreshToken: string;
+}
+
+export interface UpdateUser {
+  userName: string;
+  name: string;
+  family: string;
+  age: Date | string;
+  isMale: boolean | string;
+  email: string;
+  phoneNumber: string;
 }
 
 export interface Login {

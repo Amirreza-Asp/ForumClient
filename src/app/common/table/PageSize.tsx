@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import "./pageSize.css";
 
 interface Props {
   size?: number;

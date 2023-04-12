@@ -6,14 +6,30 @@ import { Pagenation } from "../models/Shared";
 import { store } from "./store";
 
 export default class CommunityStore {
+  topCommunities?: Community[] = [];
+  loadingTopCommunities = false;
   communities?: Pagenation<Community>;
   loadingCommunities: boolean = false;
   loadCommunity: boolean = false;
   selectedCommunity?: Community;
+  loadingSetManager = false;
 
   constructor() {
     makeAutoObservable(this);
   }
+
+  getTopCommunities = async () => {
+    this.loadingTopCommunities = true;
+    try {
+      const communities = await agent.communities.top();
+
+      runInAction(() => (this.topCommunities = communities));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      runInAction(() => (this.loadingTopCommunities = false));
+    }
+  };
 
   fetchCommunities = async (query: GridQuery) => {
     this.loadingCommunities = true;
@@ -74,5 +90,24 @@ export default class CommunityStore {
 
   clearCommunity = () => {
     this.selectedCommunity = undefined;
+  };
+
+  setManager = async (model: { userName: string; communityId: string }) => {
+    this.loadingSetManager = true;
+    try {
+      await agent.communities.setManager(model);
+      runInAction(() => {
+        this.communities?.data.forEach((item) => {
+          if (item.id === model.communityId) {
+            item.manager = model.userName;
+          }
+        });
+      });
+      store.modalStore.closeModal();
+    } catch (error) {
+      throw error;
+    } finally {
+      runInAction(() => (this.loadingSetManager = false));
+    }
   };
 }

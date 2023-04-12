@@ -1,0 +1,62 @@
+.add-comment {
+  color: white;
+  width: 450px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 0 30px 20px var(--color-item);
+  border-radius: 5px;
+  text-align: center;
+  padding-block: 1rem;
+  height: max-content;
+
+  $addBtnColor: rgb(87, 188, 255);
+  h3 {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 1rem;
+  }
+
+  .my-text-area {
+    width: 90%;
+    margin-inline: auto;
+
+    textarea {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.8rem;
+      font-size: 1rem;
+      font-weight: 100;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 0, 0, 1);
+    }
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    margin-block: 50px 10px;
+
+    $addBtnColor: rgb(101, 204, 255);
+
+    button.add-button {
+      background-color: transparent;
+      padding: 0.65rem 2.2rem;
+      border: 1px solid $addBtnColor;
+      color: $addBtnColor;
+      border-radius: 4px;
+      box-shadow: inset 0 0 12px $addBtnColor, 0 0 12px $addBtnColor;
+      position: relative;
+      perspective: preserve-3d;
+      cursor: pointer;
+      display: block;
+      transition: 0.5s;
+
+      &:hover,
+      &:active {
+        box-shadow: inset 0 0 80px 10px $addBtnColor, 0 0 20px $addBtnColor;
+        color: black;
+
+        &::before {
+          opacity: 1;
+          filter: blur(40px);
+        }
+      }
+    }
+  }
+}

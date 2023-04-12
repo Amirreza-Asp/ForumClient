@@ -7,6 +7,7 @@ interface Props {
   setFile: (file: File) => void;
   style?: object;
   icon?: string | JSX.Element;
+  props?: any;
 }
 
 export default function MyFileInput({
@@ -16,6 +17,7 @@ export default function MyFileInput({
   setFile,
   style,
   icon,
+  props,
 }: Props) {
   const inputFile = React.useRef<HTMLInputElement>(null);
   const buttonFile = React.useRef<HTMLButtonElement>(null);
@@ -39,6 +41,7 @@ export default function MyFileInput({
         {icon ? typeof icon === "string" ? <i className={icon}></i> : icon : ""}
       </button>
       <input
+        {...props}
         type="file"
         id="file"
         name="name"

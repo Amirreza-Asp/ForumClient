@@ -1,18 +1,17 @@
 import { format } from "date-fns";
 import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
-import { communityIcon, communityImage } from "../../../../app/api/image";
 import BorderButton from "../../../../app/common/buttons/BorderButton";
-import LineButton from "../../../../app/common/buttons/LineButton";
 import Loading from "../../../../app/common/loading/Loading";
 import { RemoveSwal } from "../../../../app/common/modals/SwalModal";
 import PagenationNums from "../../../../app/common/pagenation/PagenationNums";
 import PageSize from "../../../../app/common/table/PageSize";
 import { FilterModel, GridQuery } from "../../../../app/models/Queries";
 import { useStore } from "../../../../app/stores/store";
-import { colors } from "../../../../app/utility/SD";
+import { colors, routes } from "../../../../app/utility/SD";
 import UpsertTopicPage from "../upsert/UpsertTopicPage";
 import TopicFilter from "./TopicFilter";
+import { useHistory } from "react-router-dom";
 
 export interface ITopicFilter {
   title?: string;
@@ -27,8 +26,12 @@ export default observer(function CommunityPagenation() {
   const [showFilters, setShowFilters] = useState(false);
   const [filter, setFilter] = React.useState({});
 
+  const history = useHistory();
+
   React.useEffect(() => {
     topicStore.fetchTopics(query);
+
+    return () => topicStore.clearTopics();
   }, [topicStore.fetchTopics, query]);
 
   function remove(id: string) {
@@ -154,6 +157,9 @@ export default observer(function CommunityPagenation() {
                           icon="fa fa-eye"
                           color={colors.info}
                           className="mx-2"
+                          onClick={() => {
+                            history.push(routes.TopicDetails(item.id));
+                          }}
                         />
                         <BorderButton
                           icon="fa fa-edit"

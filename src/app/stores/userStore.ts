@@ -31,6 +31,10 @@ export default class UserStore {
     }
   };
 
+  clearUsers = () => {
+    this.users = undefined;
+  };
+
   fetchSelectedUser = async (userName: string) => {
     this.loadSelectedUser = true;
     try {

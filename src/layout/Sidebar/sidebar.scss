@@ -1,14 +1,14 @@
 @import "../styles/variables";
 
 .sidebar {
-  background: rgba(32, 32, 32, 0.4);
+  background: rgba(25, 25, 30, 0.7);
   z-index: 100;
   color: var(--color-quinary);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   backdrop-filter: blur(6px);
-  // border: 1px solid rgba(255, 255, 255, 0.18);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
   position: fixed;
-  top: 84px;
+  top: 84.4px;
   left: 0;
   width: 15em;
   height: calc(100vh - 84px);
@@ -51,10 +51,6 @@
     list-style-type: none;
   }
 
-  small {
-    color: #ccc;
-  }
-
   .brand {
     display: block;
     font-size: 1.5em;
@@ -64,8 +60,10 @@
 
   .menu-heading {
     padding: 1em;
-    margin: 2em 0 0.5em 0;
+    margin: 1em 0 0.5em 0;
     display: block;
+    color: #ccc;
+    font-size: 1.1rem;
   }
 
   ul {
@@ -80,12 +78,6 @@
       margin-right: 0.8em;
       filter: invert(100%) brightness(80%);
     }
-  }
-
-  hr {
-    border: 1px #2a2f44 solid;
-    width: 90%;
-    margin: 0 auto;
   }
 
   li {
@@ -139,7 +131,7 @@
       display: flex;
       justify-content: start;
       align-items: center;
-      padding: 1em;
+      padding: 1.1em 1em;
       border-radius: 0.8em;
       transition: 0.3s;
 
@@ -149,54 +141,6 @@
         align-items: center;
       }
     }
-  }
-
-  .notification {
-    li {
-      a {
-        width: 100%;
-        justify-content: space-between;
-
-        div {
-          display: flex;
-          justify-content: start;
-          align-items: center;
-          gap: 17px;
-
-          i {
-            width: 25px;
-            font-size: 1.4rem;
-          }
-        }
-
-        &:hover {
-          color: #fff;
-        }
-      }
-    }
-  }
-
-  .badge {
-    background-color: var(--color-logo);
-    border-radius: 50%;
-    width: 1.8em;
-    aspect-ratio: 1;
-    text-align: center;
-    line-height: 20px;
-    color: #fff;
-    font-size: 0.7em;
-    transition: 0.3;
-  }
-
-  li:hover,
-  li:active {
-    .badge {
-      background: var(--color-tertiary) !important;
-    }
-  }
-
-  li.active .badge {
-    background-color: var(--color-tertiary);
   }
 }
 
@@ -210,47 +154,19 @@
     width: 0;
   }
 
-  div {
-    padding: 1.7em 0.2em 1.7em 0.3em;
-  }
-
-  .notification {
-    li {
-      a {
-        padding: 0.2em 1em;
-        justify-content: center;
-
-        div {
-          i {
-            margin-right: 0;
-          }
-        }
-      }
-    }
-  }
-
-  span,
-  .profile div,
-  .profile span {
+  .sidebar-item-title {
     display: none;
   }
 
-  .menu-heading,
-  .profile {
-    margin-top: 0;
+  div {
+    padding: 1.7em 0.2em 1.7em 0.3em;
   }
 
   .menu-heading {
     display: none;
   }
 
-  .profile {
-    justify-content: center;
-
-    a {
-      img {
-        margin-right: 0 !important;
-      }
-    }
+  hr {
+    display: none;
   }
 }

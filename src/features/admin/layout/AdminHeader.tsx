@@ -1,10 +1,8 @@
 import "./layout.css";
-import React, { useState } from "react";
 import { useStore } from "../../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import { userImage } from "../../../app/api/image";
-import { Link } from "react-router-dom";
-import { routes } from "../../../app/utility/SD";
+import HeaderAuthPopUp from "../../../layout/Header/HeaderAuthPopUp";
 
 interface Props {
   setActive: (active: boolean) => void;
@@ -18,7 +16,7 @@ export default observer(function AdminHeader({
   page,
 }: Props) {
   const {
-    accountStore: { user },
+    accountStore: { user, setPopUp, popUp },
   } = useStore();
 
   return (
@@ -39,11 +37,18 @@ export default observer(function AdminHeader({
         <h3>{page}</h3>
       </div>
       <div className="info">
-        <Link to={routes.Home}>
-          <i className="fa fa-home"></i>
-        </Link>
+        <div className="flex align-center justify-content gap-5">
+          <img
+            src={userImage(user?.image, 150, 150)}
+            alt="user"
+            onClick={() => (!popUp ? setPopUp(true) : setPopUp(false))}
+          />
+        </div>
 
-        <img src={userImage(user?.image, 100, 100)} alt="user" />
+        <HeaderAuthPopUp
+          isAdmin={true}
+          style={{ background: "rgba(10,10,10 , .7)" }}
+        />
       </div>
     </header>
   );

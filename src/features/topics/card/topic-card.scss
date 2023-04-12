@@ -1,0 +1,109 @@
+@import "../../../layout/styles/variables";
+
+.topics-list-item {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 90px;
+  align-items: start;
+  gap: 1rem;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  @include media-medium {
+    grid-template-columns: 1fr;
+  }
+
+  &:hover,
+  &:active {
+    transform: scale(1.02);
+  }
+
+  &:last-child {
+    border-bottom: initial;
+  }
+
+  img {
+    width: 3rem;
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    @include media-medium {
+      width: 2.5rem;
+    }
+  }
+
+  .container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+    gap: 15px;
+
+    .message {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      &-title {
+        width: 100%;
+        font-weight: bolder;
+        display: -webkit-box;
+        max-width: 100%;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @include media-medium {
+          font-size: 1rem;
+        }
+      }
+
+      &-details {
+        font-weight: lighter;
+        opacity: 0.6;
+        font-size: 0.7rem;
+
+        @include media-medium {
+          font-size: 0.6rem;
+        }
+      }
+
+      &-para {
+        margin-top: 7px;
+        opacity: 0.9;
+        font-size: 0.85rem;
+        line-height: 1.3rem;
+        display: -webkit-box;
+        max-width: 100%;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    // flex-direction: column;
+    justify-content: flex-end;
+    align-items: end;
+    font-size: 0.85rem;
+    width: 100%;
+    gap: 0.8rem;
+
+    div {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .fa-thumbs-down {
+      transform: rotateY(180deg);
+    }
+  }
+}

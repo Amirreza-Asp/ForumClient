@@ -1,0 +1,28 @@
+.change-photo {
+  padding: 1.5rem 1rem;
+  width: 600px;
+
+  .submit-photo {
+    display: none;
+  }
+
+  .resize-img {
+    width: 60%;
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid white;
+
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+    }
+  }
+}

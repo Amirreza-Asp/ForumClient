@@ -37,7 +37,8 @@
       .step-1,
       .step-2,
       .step-3,
-      .step-4 {
+      .step-4,
+      .step-5 {
         opacity: 0;
         display: none;
         transition: 0.3s;
@@ -45,6 +46,22 @@
         &.active {
           opacity: 1;
           display: block;
+        }
+      }
+
+      .step-5 {
+        p {
+          margin-top: 35px;
+        }
+
+        .my-file-input {
+          margin-bottom: 12px;
+          margin-top: 10px;
+
+          button:hover,
+          button:active {
+            background: radial-gradient(rgb(218, 233, 255), transparent);
+          }
         }
       }
 

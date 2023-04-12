@@ -5,71 +5,47 @@ import { observer } from "mobx-react-lite";
 import Loading from "../../app/common/loading/Loading";
 import { communityIcon, communityImage } from "../../app/api/image";
 import { GridQuery } from "../../app/models/Queries";
+import { Link, Router } from "react-router-dom";
+import { routes } from "../../app/utility/SD";
 
 export default observer(function Sidebar() {
   const {
     layoutStore: { close },
-    communityStore: { fetchCommunities, loadingCommunities, communities },
+    communityStore: {
+      getTopCommunities,
+      loadingTopCommunities,
+      topCommunities,
+    },
   } = useStore();
 
   useEffect(() => {
-    if (!communities) fetchCommunities(new GridQuery());
-  }, [fetchCommunities]);
+    if (!topCommunities || topCommunities.length == 0) getTopCommunities();
+  }, [topCommunities]);
 
   return (
     // <!-- sidebar -->
     <aside className={`sidebar ${close ? "close" : ""}`}>
       <div>
-        <small className="menu-heading">Categories</small>
+        <Link to={routes.Communities} className="menu-heading">
+          Communities
+        </Link>
+        <hr />
         <ul className="tools">
-          {loadingCommunities ? (
+          {loadingTopCommunities ? (
             <Loading color="cyan" width={30} />
           ) : (
-            communities?.data.map((item) => (
+            topCommunities?.map((item) => (
               <li key={item.id}>
-                <a href="#">
+                <Link to={routes.CommunityDetails(item.id)}>
                   <img
                     src={communityIcon(item.icon, 40, 40)}
                     alt={item.title}
                   />
-                  <span>{item.title}</span>
-                </a>
+                  <span className="sidebar-item-title">{item.title}</span>
+                </Link>
               </li>
             ))
           )}
-        </ul>
-        <hr />
-        <small className="menu-heading">
-          <span>Insights</span>
-        </small>
-        <ul className="notification">
-          <li>
-            <a href="#">
-              <div>
-                <i className="fa-thin fa-mail-bulk"></i>
-                <span>Inbox</span>
-              </div>
-              <span className="badge">18</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div>
-                <i className="fa-thin fa-note"></i>
-                <span>Topics</span>
-              </div>
-              <span className="badge">2</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div>
-                <i className="fa-thin fa-comment"></i>
-                <span>Comments</span>
-              </div>
-              <span className="badge">24</span>
-            </a>
-          </li>
         </ul>
       </div>
     </aside>

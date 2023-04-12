@@ -45,3 +45,14 @@ export function SuccessSwal(title: string, preConfirm: () => void) {
     preConfirm: preConfirm,
   });
 }
+export function WarningSwal(title: string, preConfirm: () => void) {
+  Swal.fire({
+    title: title,
+    icon: "warning",
+    confirmButtonText: "Ok",
+    timer: 5000,
+    timerProgressBar: true,
+    background: "rgba(255,255,255,.09)",
+    preConfirm: preConfirm,
+  });
+}

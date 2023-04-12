@@ -4,7 +4,7 @@ import { format } from "date-fns";
 
 interface Props {
   name: string;
-  placeholder?: string;
+  label?: string;
 }
 
 export default function MyDateInput(props: Props) {
@@ -15,13 +15,32 @@ export default function MyDateInput(props: Props) {
     label?.classList.add("selected");
   }
 
+  console.log(field);
+
   return (
     <>
-      <div className="text-input" style={{ marginTop: "1.7rem" }}>
+      <div
+        className="text-input"
+        style={{ position: "relative", marginTop: "1.7rem" }}
+      >
+        {props.label && (
+          <label
+            style={{
+              position: "absolute",
+              top: "-30px",
+              color: "white",
+              zIndex: 1,
+            }}
+            htmlFor={props.name}
+          >
+            {props.label}
+          </label>
+        )}
         <input
           type="date"
           {...field}
           name={props.name}
+          id={props.name}
           autoComplete="off"
           onFocus={(e) => InputFocused(e)}
         />

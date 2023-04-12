@@ -29,3 +29,8 @@ export interface UpsertTopic {
   communityId: string;
   content: string;
 }
+
+export interface InterestTopic {
+  topicId: string;
+  interest: boolean;
+}

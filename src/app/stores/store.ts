@@ -8,6 +8,10 @@ import LayoutStore from "./layoutStore";
 import RoleStore from "./roleStore";
 import CommunityStore from "./communityStore";
 import TopicStore from "./topicStore";
+import LogStore from "./logStore";
+import HomeStore from "./homeStore";
+import CommentStore from "./commentStore";
+import AdminStore from "./adminStore";
 
 interface Store {
   commonStore: CommonStore;
@@ -19,6 +23,10 @@ interface Store {
   roleStore: RoleStore;
   communityStore: CommunityStore;
   topicStore: TopicStore;
+  logStore: LogStore;
+  homeStore: HomeStore;
+  commentStore: CommentStore;
+  adminStore: AdminStore;
 }
 
 export const store: Store = {
@@ -31,6 +39,10 @@ export const store: Store = {
   roleStore: new RoleStore(),
   communityStore: new CommunityStore(),
   topicStore: new TopicStore(),
+  logStore: new LogStore(),
+  homeStore: new HomeStore(),
+  commentStore: new CommentStore(),
+  adminStore: new AdminStore(),
 };
 
 export const StoreContext = createContext(store);

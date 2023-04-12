@@ -1,17 +1,7 @@
 @import "../../../layout/styles/variables";
 
-*,
-*::after,
-*::before {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 body {
   background: rgb(25, 25, 30);
-  font-family: Helvetica, sans-serif;
-  overflow-x: hidden;
   width: 100vw;
 
   @include media-tablet {
@@ -19,22 +9,10 @@ body {
   }
 }
 
-// Light Color Palette (Custom Properties)
-html {
-  --color-primary: #ccc;
-  --color-secondary: #1c90ce;
-  --color-tertiary: rgb(24, 178, 255);
-  --color-quaternary: #00334e;
-  --color-logo: #148cef;
-
-  --color-item: rgb(25, 28, 35);
-  --color-item-light: rgba(36, 36, 36, 0.6);
-  --color-quinary: #0e0e0e;
-  --color-bg: rgb(25, 25, 30);
-}
-
 .bg-item {
-  background-color: var(--color-item);
+  box-shadow: inset 0 0 30px 20px var(--color-item);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
 }
 
 .mx-2 {
@@ -60,11 +38,12 @@ html {
   left: 0;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 1rem 2rem;
   font-size: 1.2rem;
-  background: linear-gradient(rgba(20, 20, 65, 0.7), rgba(0, 0, 0, 0.7));
+  background: linear-gradient(rgb(15, 15, 19), rgba(26, 28, 36));
   backdrop-filter: blur(5px);
   z-index: 5;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   .header-nav-logo {
     display: flex;
@@ -125,7 +104,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 50px;
 
     img {
       width: 3rem;
@@ -135,6 +114,17 @@ html {
       border-radius: 50%;
       border: 1px solid rgb(94, 94, 94);
       cursor: pointer;
+      box-shadow: -1px 2px 7px rgb(101, 101, 101);
+      transition: 0.2s;
+
+      &:hover {
+        transform: translate(-1px, 2px);
+        box-shadow: initial;
+      }
+    }
+
+    .select-icon {
+      transform: scaleX(1.5) scaleY(0.8) rotate(-90deg);
     }
 
     a {
@@ -148,7 +138,8 @@ html {
 }
 
 .admin-sidebar {
-  background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.4));
+  background: linear-gradient(rgba(23, 25, 32), rgb(10, 10, 15));
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
   z-index: 20;
   color: var(--color-quinary);
@@ -233,8 +224,14 @@ html {
     margin-top: 1rem;
 
     i {
-      font-size: 1.6em;
+      font-size: 1.5em;
       margin-right: 0.5em;
+      width: 1.85rem;
+
+      &.fa-sign-out {
+        text-align: right;
+        transform: rotate(180deg);
+      }
     }
   }
 

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,7 +10,6 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
 
 ChartJS.register(
   CategoryScale,
@@ -33,27 +31,36 @@ export const options = {
     },
     title: {
       display: true,
-      text: "best community activity time",
+      text: "Community with most topics",
     },
   },
 };
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
-
-export const data = {
-  labels,
-  datasets: [
+interface Props {
+  communitiesWithMostTopics: [
     {
-      fill: true,
-      label: "",
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      borderColor: "rgb(85, 255, 79)",
-      backgroundColor: "rgba(85, 255, 79, .1)",
-    },
-  ],
-};
+      community: string;
+      topicsCount: number;
+    }
+  ];
+}
 
-export default function BestCommunityActivityTime() {
+export default function CommunityWithMostTopics({
+  communitiesWithMostTopics,
+}: Props) {
+  const data = {
+    labels: communitiesWithMostTopics.map((item) => item.community),
+    datasets: [
+      {
+        fill: true,
+        label: "",
+        data: communitiesWithMostTopics.map((item) => item.topicsCount),
+        borderColor: "rgb(85, 255, 79)",
+        backgroundColor: "rgba(85, 255, 79, .1)",
+      },
+    ],
+  };
+
   return (
     <div className="bg-item">
       <Line

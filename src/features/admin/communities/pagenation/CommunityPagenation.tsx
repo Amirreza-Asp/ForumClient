@@ -10,9 +10,11 @@ import PagenationNums from "../../../../app/common/pagenation/PagenationNums";
 import PageSize from "../../../../app/common/table/PageSize";
 import { FilterModel, GridQuery } from "../../../../app/models/Queries";
 import { useStore } from "../../../../app/stores/store";
-import { colors } from "../../../../app/utility/SD";
+import { colors, routes } from "../../../../app/utility/SD";
 import UpsertCommunityPage from "../upsert/UpsertCommunityPage";
 import CommunityFilters from "./CommunityFilter";
+import { useHistory } from "react-router-dom";
+import SetManager from "../setManager/SetManager";
 
 export interface ICommunityFilter {
   title?: string;
@@ -24,6 +26,7 @@ export default observer(function CommunityPagenation() {
   const [query, setQuery] = React.useState<GridQuery>(new GridQuery());
   const [showFilters, setShowFilters] = useState(false);
   const [filter, setFilter] = React.useState({});
+  const history = useHistory();
 
   React.useEffect(() => {
     communityStore.fetchCommunities(query);
@@ -118,6 +121,7 @@ export default observer(function CommunityPagenation() {
                   <th>Image</th>
                   <th>CreatedAt</th>
                   <th>Icon</th>
+                  <th>Manager</th>
                   <th>Operations</th>
                 </tr>
               </thead>
@@ -125,7 +129,7 @@ export default observer(function CommunityPagenation() {
                 {communityStore.communities?.data.map((item, index) => (
                   <tr key={index}>
                     <td width={"10%"}>{index + 1}</td>
-                    <td width={"20%"}>{item.title}</td>
+                    <td width={"15%"}>{item.title}</td>
                     <td width={"15%"}>
                       <img
                         src={communityImage(item.image, 50, 50)}
@@ -141,7 +145,7 @@ export default observer(function CommunityPagenation() {
                       />
                     </td>
 
-                    <td width={"20%"}>{format(item.createAt, "yyyy-MM-dd")}</td>
+                    <td width={"15%"}>{format(item.createAt, "yyyy-MM-dd")}</td>
 
                     <td width={"15%"}>
                       <img
@@ -154,12 +158,33 @@ export default observer(function CommunityPagenation() {
                         }}
                       />
                     </td>
-                    <td width={"20%"}>
+                    <td
+                      width={"15%"}
+                      style={{
+                        textDecoration: "underline",
+                        color: "cyan",
+                        cursor: "pointer",
+                      }}
+                      onClick={() =>
+                        modalStore.openModal(
+                          <SetManager
+                            communityId={item.id}
+                            manager={item.manager}
+                          />
+                        )
+                      }
+                    >
+                      {item.manager ? item.manager : "None"}
+                    </td>
+                    <td width={"15%"}>
                       <div style={{ width: "max-content" }}>
                         <BorderButton
                           icon="fa fa-eye"
                           color={colors.info}
                           className="mx-2"
+                          onClick={() =>
+                            history.push(routes.CommunityDetails(item.id))
+                          }
                         />
                         <BorderButton
                           icon="fa fa-edit"

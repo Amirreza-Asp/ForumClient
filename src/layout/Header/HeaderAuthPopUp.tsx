@@ -1,20 +1,62 @@
 import { observer } from "mobx-react-lite";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useStore } from "../../app/stores/store";
 import { roles, routes } from "../../app/utility/SD";
 import ProfilePage from "../../features/account/profile/ProfilePage";
+import "./authPopup.css";
 
-export default observer(function HeaderAuthPopUp() {
+interface Props {
+  style?: React.CSSProperties;
+  isAdmin?: boolean;
+}
+
+export default observer(function HeaderAuthPopUp({
+  style = {},
+  isAdmin = false,
+}: Props) {
   const { accountStore, modalStore } = useStore();
 
+  const container = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        e.target instanceof Element &&
+        container.current != null &&
+        !container.current.contains(e.target)
+      )
+        accountStore.setPopUp(false);
+    };
+
+    document.addEventListener("click", handleClickOutside, true);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
+
   return (
-    <div className={`header-auth-popup ${accountStore.popUp ? "active" : ""}`}>
+    <div
+      style={style}
+      ref={container}
+      className={`header-auth-popup ${accountStore.popUp ? "active" : ""} ${
+        isAdmin ? "admin" : ""
+      }`}
+    >
       <ul className="list">
-        {accountStore.user?.role === roles.Admin && (
+        {(accountStore.user?.role === roles.Admin ||
+          accountStore.user?.role === roles.SuperManager) && (
           <li className="item">
-            <Link to={routes.Admin_Dashboard}>
-              <i className="fa fa-user-secret"></i>
-              <span>Admin</span>
+            <Link to={isAdmin ? routes.Home : routes.Admin_Dashboard}>
+              <i className={`fa ${isAdmin ? "fa-home" : "fa-user-secret"}`}></i>
+              <span>
+                {isAdmin
+                  ? "Home"
+                    ? accountStore.user.role === roles.Admin
+                    : "Admin"
+                  : "Manager"}
+              </span>
             </Link>
           </li>
         )}

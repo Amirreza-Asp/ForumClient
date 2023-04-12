@@ -12,6 +12,7 @@ import { RemoveSwal } from "../../../../app/common/modals/SwalModal";
 import UserFilters from "./UserFilters";
 import PagenationNums from "../../../../app/common/pagenation/PagenationNums";
 import { FilterModel } from "../../../../app/models/Queries";
+import ProfilePage from "../../../account/profile/ProfilePage";
 
 export interface IUserFilter {
   name?: string;
@@ -23,14 +24,22 @@ export interface IUserFilter {
 
 export default observer(function UserPagenation() {
   const { userStore, modalStore } = useStore();
-  const { fetchUsers, loadingUsers, setLoadingUsers, users, removeUser } =
-    userStore;
+  const {
+    fetchUsers,
+    loadingUsers,
+    setLoadingUsers,
+    users,
+    removeUser,
+    clearUsers,
+  } = userStore;
   const [query, setQuery] = React.useState<GridQuery>(new GridQuery());
   const [showFilters, setShowFilters] = useState(false);
   const [filter, setFilter] = React.useState<IUserFilter>();
 
   React.useEffect(() => {
     fetchUsers(query);
+
+    return () => clearUsers();
   }, [fetchUsers, query]);
 
   function remove(userName: string) {
@@ -136,6 +145,11 @@ export default observer(function UserPagenation() {
                           icon="fa fa-eye"
                           color={colors.info}
                           className="mx-2"
+                          onClick={() =>
+                            modalStore.openModal(
+                              <ProfilePage userName={item.userName} />
+                            )
+                          }
                         />
                         <BorderButton
                           icon="fa fa-edit"

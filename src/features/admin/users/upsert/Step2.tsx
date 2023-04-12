@@ -25,7 +25,7 @@ export default function RegisterStep2({
 
   return (
     <div className={`step-2 ${visible ? "active" : ""}`}>
-      <MyDateInput name="age" placeholder="Age" />
+      <MyDateInput name="age" />
       <MySelectOption name="isMale" options={genderOptions} />
       <div className="btn-conatiner">
         <LineButton

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,7 +8,6 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
 
 ChartJS.register(
   CategoryScale,
@@ -34,23 +32,30 @@ export const options = {
   },
 };
 
-const labels = ["January", "February", "March", "April", "May"];
-
-export const data = {
-  labels,
-  datasets: [
+interface Props {
+  newMembersJoined: [
     {
-      fill: true,
-      label: "Dataset 1",
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      borderColor: "rgba(3, 227, 252 , 1)",
-      borderWidth: 2,
-      backgroundColor: "rgba(3, 227, 252 , .1)",
-    },
-  ],
-};
+      month: string;
+      count: string;
+    }
+  ];
+}
 
-export default function NewMemberChart() {
+export default function NewMemberChart({ newMembersJoined }: Props) {
+  const data = {
+    labels: newMembersJoined.map((item) => item.month),
+    datasets: [
+      {
+        fill: true,
+        label: "Dataset 1",
+        data: newMembersJoined.map((item) => item.count),
+        borderColor: "rgba(3, 227, 252 , 1)",
+        borderWidth: 2,
+        backgroundColor: "rgba(3, 227, 252 , .1)",
+      },
+    ],
+  };
+
   return (
     <div className="bg-item">
       <Bar

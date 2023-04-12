@@ -1,0 +1,108 @@
+@import "../../../layout/styles/variables";
+
+.communities-list {
+  margin: 1rem;
+  box-shadow: inset 0 0 30px 20px var(--color-item);
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  color: white;
+
+  .title {
+    font-size: 1.5rem;
+    border-bottom: 1px dashed gray;
+    padding-bottom: 10px;
+    margin-bottom: 2rem;
+  }
+
+  .list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-inline: 20px;
+
+    @include media-tablet {
+      padding-inline: 10px;
+    }
+    .item {
+      box-shadow: 0 0 5px gray;
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover,
+      &:active {
+        transform: scale(1.02);
+      }
+
+      a {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+
+        @include media-medium {
+          flex-direction: column;
+        }
+
+        img {
+          @include media-medium {
+            display: none;
+          }
+
+          border-radius: 50%;
+          width: 70px;
+          aspect-ratio: 1;
+          object-fit: cover;
+          object-position: center;
+          box-shadow: 0 0 3px gray;
+        }
+
+        .content {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 7px;
+
+          h4 {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            span {
+              font-size: 0.8rem;
+              opacity: 0.9;
+            }
+          }
+
+          .tiny-img {
+            display: none;
+            object-fit: cover;
+            object-position: center;
+
+            @include media-medium {
+              display: block;
+              width: 50px;
+              aspect-ratio: 2/1;
+              border-radius: 5px;
+            }
+          }
+
+          p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+          }
+
+          .date {
+            opacity: 0.6;
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+}

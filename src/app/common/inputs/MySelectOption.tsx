@@ -8,6 +8,7 @@ interface Props {
   options: SelectOptions[];
   default?: string;
   className?: string;
+  label?: string;
 }
 
 export default function MySelectOption(props: Props) {
@@ -23,6 +24,7 @@ export default function MySelectOption(props: Props) {
 
   const regexExp =
     /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+
   if (
     field.value &&
     typeof field.value == "string" &&
@@ -33,6 +35,7 @@ export default function MySelectOption(props: Props) {
   return (
     <>
       <div className={`select-option ${props.className}`}>
+        {props.label && <label>{props.label}</label>}
         <select
           value={field.value}
           name={props.name}

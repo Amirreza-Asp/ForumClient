@@ -1,11 +1,26 @@
-import React from "react";
+import { observer } from "mobx-react-lite";
+import React, { useRef } from "react";
 
 interface Props {
   icon: { name: string; color: string };
   data: { title: string; value: string };
+  refreshHandler: () => Promise<void>;
 }
 
-export default function DashboardCard({ icon, data }: Props) {
+export default observer(function DashboardCard({
+  icon,
+  data,
+  refreshHandler,
+}: Props) {
+  const refreshBtn = useRef<HTMLDivElement>(null);
+
+  const handleRefresh = () => {
+    refreshBtn.current?.classList.add("active");
+    refreshHandler().finally(() => {
+      refreshBtn.current?.classList.remove("active");
+    });
+  };
+
   return (
     <div className="dashboard-card">
       <div className="body">
@@ -23,10 +38,10 @@ export default function DashboardCard({ icon, data }: Props) {
           <h3 className="value">{data.value}</h3>
         </div>
       </div>
-      <div className="loader">
+      <div className="loader" onClick={handleRefresh} ref={refreshBtn}>
         <i className="fa fa-refresh"></i>
         <span>Reload</span>
       </div>
     </div>
   );
-}
+});

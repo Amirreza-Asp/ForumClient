@@ -6,7 +6,7 @@ export const userImage = (
   if (name)
     return `${process.env.REACT_APP_SERVER}account/image?name=${name}&width=${width}&height=${height}`;
 
-  return "assets/images/icons8-male-user-96.png";
+  return "/assets/images/icons8-male-user-96.png";
 };
 
 export const communityImage = (
@@ -17,7 +17,7 @@ export const communityImage = (
   if (name)
     return `${process.env.REACT_APP_SERVER}community/image?name=${name}&width=${width}&height=${height}`;
 
-  return "assets/images/icons8-male-user-96.png";
+  return "/assets/images/icons8-male-user-96.png";
 };
 
 export const communityIcon = (name: string, width: number, height: number) =>

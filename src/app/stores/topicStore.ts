@@ -4,12 +4,18 @@ import { GridQuery } from "./../models/Queries";
 import { Pagenation } from "../models/Shared";
 import { v4 as uuid } from "uuid";
 import { store } from "./store";
-import { TopicDetails, TopicSummary, UpsertTopic } from "../models/Topic";
+import {
+  InterestTopic,
+  TopicDetails,
+  TopicSummary,
+  UpsertTopic,
+} from "../models/Topic";
 
 export default class TopicStore {
   topics: Pagenation<TopicSummary> | undefined;
   loadingTopics: boolean = false;
   selectedTopic?: TopicDetails;
+  loadingSelectedTopic = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -33,12 +39,19 @@ export default class TopicStore {
     }
   };
 
+  clearTopics = () => {
+    this.topics = undefined;
+  };
+
   findTopic = async (id: string) => {
+    this.loadingSelectedTopic = true;
     try {
       const topic = await agent.topic.find(id);
       runInAction(() => (this.selectedTopic = topic));
     } catch (error) {
       console.log(error);
+    } finally {
+      runInAction(() => (this.loadingSelectedTopic = false));
     }
   };
 
@@ -67,6 +80,14 @@ export default class TopicStore {
   removeTopic = async (id: string) => {
     try {
       await agent.topic.remove(id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  interestTopic = async (model: InterestTopic) => {
+    try {
+      await agent.topic.interest(model);
     } catch (error) {
       console.log(error);
     }

@@ -5,6 +5,7 @@ export interface Community {
   image?: string;
   icon: string;
   createAt: Date;
+  manager?: string;
 }
 
 export interface UpsertCommunity {

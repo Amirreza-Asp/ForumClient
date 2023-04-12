@@ -5,7 +5,6 @@ import MyTextArea from "../../../../app/common/inputs/MyTextArea";
 import "./style.css";
 import LineButton from "../../../../app/common/buttons/LineButton";
 import { colors } from "../../../../app/utility/SD";
-import BorderButton from "../../../../app/common/buttons/BorderButton";
 import MyFileInput from "../../../../app/common/inputs/MyFileInput";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
@@ -76,81 +75,95 @@ export default observer(function UpsertCommunityPage({ query, id }: Props) {
     else await create(values);
   }
 
-  if (id && communityStore.loadCommunity)
-    return <Loading width={30} color={id ? colors.edit : colors.add} />;
-
   return (
     <section className="add-container bg-glass border-glass br-5">
-      <h2 className="header" style={{ color: id ? colors.edit : colors.add }}>
-        {id ? "Edit" : "Create"} Community
-      </h2>
-      <Formik
-        initialValues={{
-          title: communityStore.selectedCommunity?.title ?? "",
-          description: communityStore.selectedCommunity?.description ?? "",
-        }}
-        validationSchema={validationSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          if (!image && !id) {
-            Swal.fire({
-              title: "Enter image",
-              icon: "error",
-              timer: 3000,
-            });
+      {id && communityStore.loadCommunity ? (
+        <Loading
+          width={30}
+          containerHeight={390}
+          color={id ? colors.edit : colors.add}
+        />
+      ) : (
+        <>
+          <h2
+            className="header"
+            style={{ color: id ? colors.edit : colors.add }}
+          >
+            {id ? "Edit" : "Create"} Community
+          </h2>
+          <Formik
+            initialValues={{
+              title: communityStore.selectedCommunity?.title ?? "",
+              description: communityStore.selectedCommunity?.description ?? "",
+            }}
+            validationSchema={validationSchema}
+            onSubmit={(values, { setSubmitting }) => {
+              if (!image && !id) {
+                Swal.fire({
+                  title: "Enter image",
+                  icon: "error",
+                  timer: 3000,
+                });
 
-            setSubmitting(false);
-          } else if (!icon && !id) {
-            Swal.fire({
-              title: "Enter icon",
-              icon: "error",
-              timer: 3000,
-            });
-            setSubmitting(false);
-          } else {
-            handleClick(values).then(() => {
-              SuccessSwal(
-                `Community ${id ? "edited" : "created"} successfully`,
-                () => communityStore.fetchCommunities(query)
-              );
-            });
-          }
-        }}
-      >
-        {({ handleSubmit, isSubmitting }) => (
-          <Form onSubmit={handleSubmit}>
-            <MyTextInput name="title" placeholder="title" />
-            <MyTextArea name="description" placeholder="description" rows={4} />
+                setSubmitting(false);
+              } else if (!icon && !id) {
+                Swal.fire({
+                  title: "Enter icon",
+                  icon: "error",
+                  timer: 3000,
+                });
+                setSubmitting(false);
+              } else {
+                handleClick(values).then(() => {
+                  SuccessSwal(
+                    `Community ${id ? "edited" : "created"} successfully`,
+                    () => communityStore.fetchCommunities(query)
+                  );
+                });
+              }
+            }}
+          >
+            {({ handleSubmit, isSubmitting }) => (
+              <Form onSubmit={handleSubmit}>
+                <MyTextInput name="title" placeholder="title" />
+                <MyTextArea
+                  name="description"
+                  placeholder="description"
+                  rows={4}
+                />
 
-            <div
-              className="flex justify-center align-center"
-              style={{ gap: 5 }}
-            >
-              <MyFileInput
-                setFile={setImage}
-                name="image"
-                value="image"
-                accept="image/*"
-              />
-              <MyFileInput
-                setFile={setIcon}
-                name="icon"
-                value="icon"
-                accept="image/png"
-              />
-            </div>
+                <div
+                  className="flex justify-center align-center"
+                  style={{ gap: 5 }}
+                >
+                  <MyFileInput
+                    setFile={setImage}
+                    name="image"
+                    value="image"
+                    accept="image/*"
+                  />
+                  <MyFileInput
+                    setFile={setIcon}
+                    name="icon"
+                    value="icon"
+                    accept="image/png"
+                  />
+                </div>
 
-            <div className="flex justify-center align-center mt-40">
-              <LineButton
-                size="md"
-                color={id ? colors.edit : colors.add}
-                value="submit"
-                type="submit"
-                loading={isSubmitting}
-              />
-            </div>
-          </Form>
-        )}
-      </Formik>
+                <div className="flex justify-center align-center mt-40">
+                  <LineButton
+                    size="md"
+                    color={id ? colors.edit : colors.add}
+                    value="submit"
+                    type="submit"
+                    loading={isSubmitting}
+                  />
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </>
+      )}
     </section>
   );
 });

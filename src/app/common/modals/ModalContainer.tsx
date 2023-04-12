@@ -1,5 +1,4 @@
 import ReactModal from "react-modal";
-import React from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "./../../stores/store";
 
@@ -14,7 +13,15 @@ export default observer(function ModalContainer() {
       ariaHideApp={false}
       onRequestClose={() => modalStore.closeModal()}
     >
-      <>{modal.body}</>
+      <>
+        <button
+          className="modal-close-btn"
+          onClick={() => modalStore.closeModal()}
+        >
+          <i className="fa fa-close"></i>
+        </button>
+        {modal.body}
+      </>
     </ReactModal>
   );
 });

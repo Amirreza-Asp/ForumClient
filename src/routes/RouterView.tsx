@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Switch } from "react-router-dom";
 import AdminLayout from "../features/admin/layout/AdminLayout";
 import { routes } from "../app/utility/SD";
@@ -8,8 +7,11 @@ import CommunityPagenation from "../features/admin/communities/pagenation/Commun
 import Layout from "../layout/Layout";
 import Home from "../features/home/Home";
 import ServerErrorPage from "../features/errors/ServerErrorPage";
-import ProfilePage from "../features/account/profile/ProfilePage";
 import TopicPagenation from "../features/admin/topics/pagenation/TopicPagenation";
+import LogPagenation from "../features/admin/logs/pagenation/LogPagenation";
+import TopicDetails from "../features/topics/details/TopicDetails";
+import CommunitiesList from "../features/communities/list/CommunitiesList";
+import CommunityDetails from "../features/communities/details/CommunityDetails";
 
 export default function RouterView() {
   return (
@@ -29,6 +31,7 @@ export default function RouterView() {
               exact
               component={TopicPagenation}
             />
+            <Route path={routes.Admin_Logs} exact component={LogPagenation} />
           </Switch>
         </AdminLayout>
       </Route>
@@ -42,7 +45,21 @@ export default function RouterView() {
               exact
               component={ServerErrorPage}
             />
-            <Route path="/profile" exact component={ProfilePage} />
+            <Route
+              path={routes.TopicDetails()}
+              exact
+              component={TopicDetails}
+            />
+            <Route
+              path={routes.Communities}
+              exact
+              component={CommunitiesList}
+            />
+            <Route
+              path={routes.CommunityDetails()}
+              exact
+              component={CommunityDetails}
+            />
           </Switch>
         </Layout>
       </Route>
