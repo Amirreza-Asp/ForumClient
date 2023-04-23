@@ -23,13 +23,13 @@
 
     .forums {
       h2 {
-        color: rgb(44, 44, 60);
         font-size: 2.2em;
         position: relative;
 
         span {
-          text-shadow: 0 0 1px rgba(255, 255, 255, 1),
-            0 0 3px rgba(39, 190, 255, 0.5);
+          color: transparent;
+          background: linear-gradient(0deg, gray, var(--color-logo) 50%);
+          background-clip: text;
         }
 
         @include media-tablet {

@@ -68,7 +68,7 @@ export default observer(function TopicDetailsComment({ comment }: Props) {
       />
       <div className="prof">
         <img src={userImage(comment.author.image, 150, 150)} />
-        <p>{comment.author.fullName}</p>
+        <p>{comment.author ? comment.author.fullName : ""}</p>
       </div>
       <div className="content">
         <p>{comment.content}</p>

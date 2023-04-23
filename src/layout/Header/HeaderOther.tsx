@@ -5,32 +5,39 @@ import HeaderAuthPopUp from "./HeaderAuthPopUp";
 import LoginForm from "../../features/account/login/LoginForm";
 import RegisterForm from "../../features/account/register/RegisterForm";
 import { useEffect } from "react";
+import UnreadComments from "../../features/comments/unreadComments/UnreadComments";
+import { useHistory } from "react-router-dom";
+import { routes } from "../../app/utility/SD";
 
 export default observer(function HeaderOther() {
   const {
-    accountStore,
+    accountStore: { IsLoggedIn, user, setPopUp, popUp },
     modalStore,
     commentStore: { unreadCommentsCount, fetchUnreadCommentsCount },
   } = useStore();
-  const { user } = accountStore;
+
+  const history = useHistory();
 
   useEffect(() => {
-    if (!unreadCommentsCount) fetchUnreadCommentsCount();
-  }, [fetchUnreadCommentsCount]);
+    if (!unreadCommentsCount && IsLoggedIn) fetchUnreadCommentsCount();
+  }, [fetchUnreadCommentsCount, IsLoggedIn]);
 
   return (
     <div className="layout-header-nav-other">
-      {accountStore.IsLoggedIn ? (
+      {IsLoggedIn ? (
         <>
           <div className="layout-header-nav-other-bell">
             <i className="fa fa-bell"></i>
+            <span className="notif">3</span>
+          </div>
+          <div
+            className="layout-header-nav-other-message"
+            onClick={() => modalStore.openModal(<UnreadComments />)}
+          >
+            <i className="fa fa-comment-alt-dots"></i>
             {unreadCommentsCount && (
               <span className="notif">{unreadCommentsCount}</span>
             )}
-          </div>
-          <div className="layout-header-nav-other-message">
-            <i className="fa fa-comment-alt-dots"></i>
-            <span className="notif">3</span>
           </div>
 
           <div className="layout-header-nav-other-user">
@@ -38,7 +45,7 @@ export default observer(function HeaderOther() {
               className="layout-header-nav-other-user-img"
               src={userImage(user?.image, 150, 150)}
               alt="user"
-              onClick={() => accountStore.setPopUp(!accountStore.popUp)}
+              onClick={() => setPopUp(!popUp)}
             />
           </div>
           <HeaderAuthPopUp />

@@ -24,9 +24,11 @@ export default observer(function HeaderAuthPopUp({
       if (
         e.target instanceof Element &&
         container.current != null &&
-        !container.current.contains(e.target)
-      )
+        !container.current.contains(e.target) &&
+        !e.target.closest(".layout-header-nav-other-user")
+      ) {
         accountStore.setPopUp(false);
+      }
     };
 
     document.addEventListener("click", handleClickOutside, true);
@@ -53,8 +55,8 @@ export default observer(function HeaderAuthPopUp({
               <span>
                 {isAdmin
                   ? "Home"
-                    ? accountStore.user.role === roles.Admin
-                    : "Admin"
+                  : accountStore.user.role === roles.Admin
+                  ? "Admin"
                   : "Manager"}
               </span>
             </Link>

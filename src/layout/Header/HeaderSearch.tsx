@@ -15,6 +15,8 @@ export default observer(function HeaderSearch() {
   const [showClear, setShowClear] = useState(false);
 
   const search = () => {
+    if (!input.current!.value) return;
+
     const query = new GridQuery();
     query.size = 5;
     query.filters = [{ column: "title", value: input.current!.value }];

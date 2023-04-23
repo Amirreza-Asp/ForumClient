@@ -2,6 +2,7 @@ import {
   CommunitiesListDto,
   CommunityTopicsFilter,
   CommunityTopicsQuery,
+  TopContributors,
   TopicDetailsViewModel,
 } from "../models/Home";
 import agent from "../api/agent";
@@ -25,6 +26,8 @@ export default class HomeStore {
   communityTopicsFilters: CommunityTopicsFilter = {};
   mainTopics?: Pagenation<TopicSummary>;
   loadingMainTopics = false;
+  topContributors?: TopContributors[];
+  laodingTopContributors = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -103,6 +106,18 @@ export default class HomeStore {
       console.log(error);
     } finally {
       runInAction(() => (this.loadingMainTopics = false));
+    }
+  };
+
+  fetchTopContributors = async () => {
+    this.laodingTopContributors = true;
+    try {
+      const topContributors = await agent.home.topContributors();
+      runInAction(() => (this.topContributors = topContributors));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      runInAction(() => (this.laodingTopContributors = false));
     }
   };
 }

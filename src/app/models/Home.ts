@@ -40,6 +40,13 @@ export interface CommunityTopicsFilter {
   author?: string;
 }
 
+export interface TopContributors {
+  userName: string;
+  fullName: string;
+  image: string;
+  topicsCount: number;
+}
+
 export interface CommunityTopicsQuery {
   communityId: string;
 

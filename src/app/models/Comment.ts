@@ -47,3 +47,18 @@ export interface UpdateComment {
   id: string;
   content: string;
 }
+
+export interface UnreadComment {
+  id: string;
+  content: string;
+  createdAt: Date;
+  topicTitle: string;
+  topicId: string;
+  like: number;
+  disLike: number;
+  author: {
+    fullName: string;
+    userName: string;
+    image: string;
+  };
+}

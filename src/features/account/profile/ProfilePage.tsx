@@ -43,7 +43,7 @@ export default observer(function ProfilePage({ userName }: Props) {
           <div className="header">
             <div className="top">
               <div className="topics">
-                <span>172</span>
+                <span>{profile?.topicsCount}</span>
                 <span>TOPICS</span>
               </div>
               <div className="img" onClick={openChangePhoto}>
@@ -58,21 +58,19 @@ export default observer(function ProfilePage({ userName }: Props) {
                 />
               </div>
               <div className="comments">
-                <span>2486</span>
+                <span>{profile?.commentsCount}</span>
                 <span>Comments</span>
               </div>
             </div>
             <div className="info">{profile?.fullName}</div>
             <div className="buttons">
               <BorderButton color={colors.info} value="Topics" />
-              {user && user.userName === profile?.userName ? (
+              {user && user.userName === profile?.userName && (
                 <BorderButton
                   color="white"
                   value="Edit"
                   onClick={() => openModal(<EditProfile />)}
                 />
-              ) : (
-                <BorderButton color="white" value="Message" />
               )}
             </div>
           </div>

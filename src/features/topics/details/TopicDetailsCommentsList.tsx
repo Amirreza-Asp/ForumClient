@@ -35,6 +35,15 @@ export default observer(function TopicDetailsCommentsList({ topicId }: Props) {
     setPage((c) => c + 1);
   };
 
+  if (comments && comments.totalPages === 0) {
+    return (
+      <div className="empty-comments">
+        <h3>There are no comments</h3>
+        <p>Enter the first comment for this topic</p>
+      </div>
+    );
+  }
+
   return (
     <>
       <InfiniteScroll

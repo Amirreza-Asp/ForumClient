@@ -10,6 +10,7 @@ import { format } from "date-fns";
 import TopicDetailsReaction from "./TopicDetailsReaction";
 import TopicDetailsCommentsList from "./TopicDetailsCommentsList";
 import AddComment from "../../comments/addComment/AddComment";
+import ProfilePage from "../../account/profile/ProfilePage";
 
 export default observer(function TopicDetails() {
   const {
@@ -31,7 +32,14 @@ export default observer(function TopicDetails() {
         <div className="container">
           <aside className="info">
             <div className="author">
-              <img src={userImage(topicDetailsVM?.author.photo, 100, 100)} />
+              <img
+                src={userImage(topicDetailsVM?.author.photo, 100, 100)}
+                onClick={() =>
+                  openModal(
+                    <ProfilePage userName={topicDetailsVM.author.userName} />
+                  )
+                }
+              />
               <h3>Author : {topicDetailsVM?.author.fullName}</h3>
             </div>
             <div className="other">

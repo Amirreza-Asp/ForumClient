@@ -12,6 +12,7 @@ import LogPagenation from "../features/admin/logs/pagenation/LogPagenation";
 import TopicDetails from "../features/topics/details/TopicDetails";
 import CommunitiesList from "../features/communities/list/CommunitiesList";
 import CommunityDetails from "../features/communities/details/CommunityDetails";
+import UnreadComments from "../features/comments/unreadComments/UnreadComments";
 
 export default function RouterView() {
   return (
@@ -59,6 +60,11 @@ export default function RouterView() {
               path={routes.CommunityDetails()}
               exact
               component={CommunityDetails}
+            />
+            <Route
+              path={routes.UnreadComments}
+              exact
+              component={UnreadComments}
             />
           </Switch>
         </Layout>

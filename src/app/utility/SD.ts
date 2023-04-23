@@ -6,6 +6,7 @@ export const routes = {
   Communities: "/communities",
   CommunityDetails: (id?: string) =>
     id ? `/communities/details/${id}` : "/communities/details/:id",
+  UnreadComments: "/comments/unread",
   Admin_Dashboard: "/admin",
   Admin_Users: "/admin/User",
   Admin_Communities: "/admin/Community",

@@ -2,6 +2,7 @@ import {
   AddComment,
   Comment,
   CommentPagenationQuery,
+  UnreadComment,
   UpdateComment,
 } from "../models/Comment";
 import { Pagenation } from "../models/Shared";
@@ -15,6 +16,9 @@ export default class CommentStore {
   groupedComments: Comment[] = [];
   loadingRemoveComment = false;
   unreadCommentsCount?: number;
+  loadingUnreadComments = false;
+  unreadComments?: Pagenation<UnreadComment>;
+  groupedUnreadComments: UnreadComment[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -128,5 +132,32 @@ export default class CommentStore {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  fetchUnreadComments = async (page: number) => {
+    this.loadingUnreadComments = true;
+    try {
+      const comments = await agent.comments.getUnreadComments(page);
+      runInAction(() => {
+        comments.data.forEach((item) => {
+          item.createdAt = new Date(item.createdAt + "Z");
+        });
+
+        this.unreadComments = comments;
+        this.unreadComments.data.forEach((comment) => {
+          if (!this.groupedUnreadComments.find((b) => b.id === comment.id))
+            this.groupedUnreadComments.push(comment);
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      runInAction(() => (this.loadingUnreadComments = false));
+    }
+  };
+
+  clearUnreadComments = () => {
+    this.unreadComments = undefined;
+    this.groupedUnreadComments = [];
   };
 }

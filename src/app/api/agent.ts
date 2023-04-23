@@ -29,12 +29,14 @@ import {
   CommunityPresentation,
   CommunityPresentationQuery,
   CommunityTopicsQuery,
+  TopContributors,
   TopicDetailsViewModel,
 } from "../models/Home";
 import {
   AddComment,
   Comment,
   CommentPagenationQuery,
+  UnreadComment,
   UpdateComment,
 } from "../models/Comment";
 
@@ -140,7 +142,10 @@ const comments = {
   update: (model: UpdateComment) => requests.put(`comment/update`, model),
   unreadCommentsCount: () =>
     requests.get<number>("comment/numberUnreadComments"),
-  getUnreadComments: () => requests.get<Comment[]>("comment/getUnreadComments"),
+  getUnreadComments: (page: number) =>
+    requests.get<Pagenation<UnreadComment>>(
+      `comment/getUnreadComments?page=${page}&size=5`
+    ),
 };
 
 const Account = {
@@ -212,6 +217,8 @@ const home = {
     requests.get<Pagenation<TopicSummary>>(
       `home/mainTopics?filter=${query.filter}&page=${query.page}`
     ),
+  topContributors: () =>
+    requests.get<TopContributors[]>("home/topContributors"),
 };
 
 const log = {

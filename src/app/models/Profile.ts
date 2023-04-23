@@ -6,6 +6,8 @@ export interface Profile {
   isMale: boolean;
   age: Date;
   photo: Photo;
+  commentsCount: number;
+  topicsCount: number;
 }
 
 export interface Photo {
