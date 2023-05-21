@@ -30,7 +30,7 @@ export default class CommentStore {
       const comments = await agent.comments.pagenation(query);
       runInAction(() => {
         comments.data.forEach((comment) => {
-          comment.createdAt = new Date(comment.createdAt + "Z");
+          comment.createdAt = new Date(comment.createdAt);
         });
 
         this.comments = comments;

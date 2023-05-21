@@ -98,7 +98,7 @@ export default class HomeStore {
       const topics = await agent.home.mainTopics(model);
       runInAction(() => {
         topics.data.forEach((item) => {
-          item.createdAt = new Date(item.createdAt + "Z");
+          item.createdAt = new Date(item.createdAt);
         });
         this.mainTopics = topics;
       });

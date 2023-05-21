@@ -12,6 +12,7 @@ interface Props {
 }
 
 export default observer(function TopicCard({ topic }: Props) {
+  console.log(topic.createdAt);
   const history = useHistory();
   function goToTopicDetails() {
     history.push(routes.TopicDetails(topic.id));
